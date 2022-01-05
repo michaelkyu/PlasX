@@ -37,10 +37,7 @@ setup(
         'scikit-learn',
         'igraph',
         'numba',
-        'blosc',
-        'matplotlib',
-        'seaborn',
-        'pysam'], 
+        'blosc'], 
     entry_points={
         'console_scripts': [
             'plasx=plasx.plasx_script:run',

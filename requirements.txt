@@ -1,11 +1,7 @@
-numpy>=1.18.1
-pandas>=1.2.4
-scipy>=1.4.1
-scikit-learn>=0.19.2
-python-igraph>=0.8.2
+numpy
+pandas
+scipy
+scikit-learn
+python-igraph
 numba
 blosc
-python-blosc
-matplotlib
-seaborn
-pysam
