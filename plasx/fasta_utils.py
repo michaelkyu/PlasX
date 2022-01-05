@@ -2,11 +2,12 @@ import os
 import shutil
 import subprocess
 import tempfile
+from pathlib import Path
 
 import numpy as np
 import pandas as pd
 
-from plasx import utils
+from plasx import utils, compress_utils
 
 def gene_calls_to_fasta(gene_calls, source=None, output=None, compress=None):
     """Converts a table of gene calls (where one column is amino acid sequence) into a fasta string
