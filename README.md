@@ -265,3 +265,69 @@ head $PREFIX-scores.txt
     AST0002_000000006967	0.2730847890122725
     AST0002_000000007621	0.6630016070098446
     AST0002_000000008287	0.9848824181163179
+
+
+# Reproduce plasmid predictions from the study "The Genetic and Ecological Landscape of Plasmids in the Human Gut" by Michael Yu, Emily Fogarty, A. Murat Eren.
+
+In this study, we predicted 226,194 plasmid contigs. The PlasX scores of these plasmids can be downloaded from https://zenodo.org/record/5819401/files/predicted_plasmids_summary.txt.gz.
+
+```bash
+wget https://zenodo.org/record/5819401/files/predicted_plasmids_summary.txt.gz
+gunzip predicted_plasmids_summary.txt.gz
+```
+
+You can recalculate these scores, by running PlasX on precomputed gene annotations at https://zenodo.org/record/5732447/files/predicted_plasmids_gene_annotations.txt.gz.
+
+```bash
+# Download and extract gene annotations of predicted plasmids
+wget https://zenodo.org/record/5732447/files/predicted_plasmids_gene_annotations.txt.gz
+gunzip predicted_plasmids_gene_annotations.txt.gz
+```
+
+
+```bash
+# Run PlasX to calculate scores for the predicted plasmids
+plasx predict \
+    -a predicted_plasmids_gene_annotations.txt \
+    -o predicted_plasmids_scores.txt \
+    --overwrite
+```
+
+
+```bash
+# Scores are written to a file that looks like this
+head predicted_plasmids_scores.txt
+```
+
+    contig	score
+    AST0002_000000000224	0.9713393458995763
+    AST0002_000000000565	0.9999998989973333
+    AST0002_000000000640	0.5220555371966891
+    AST0002_000000000659	0.9999999966474049
+    AST0002_000000000996	0.9932700514639006
+    AST0002_000000001523	0.5269207274589872
+    AST0002_000000001535	0.5845180870306678
+    AST0002_000000001737	0.5296216606001394
+    AST0002_000000001776	0.9726152909151958
+
+
+
+You can also calculate the PlasX scores for all ~36,000,000 metagenomic contigs in our study (the predicted plasmids is a small subset of these contigs). Precomputed gene annotations of all contigs are at https://zenodo.org/record/5731658/files/metagenomes_gene_annotations.tar.gz. You can also recompute these gene annotations using the steps in the above tutorial. Fasta files of all contigs are at https://zenodo.org/record/5730607/files/metagenomes_contigs.tar.gz.
+
+**NOTE: these are very large tar archives that will take hours to decompress and extract.**
+
+
+```bash
+# Download and extract gene annotations of all metagenomic contigs. NOTE: this will take hours.
+wget https://zenodo.org/record/5731658/files/metagenomes_gene_annotations.tar.gz
+tar -zxf metagenomes_gene_annotations.tar.gz
+```
+
+
+```bash
+# Run PlasX to calculate scores for all contigs from metagenome AST0002 (this command can be run for any other metagenome)
+plasx predict \
+    -a AST0002_gene_annotations.txt \
+    -o AST0002-scores.txt \
+    --overwrite
+```
