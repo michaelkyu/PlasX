@@ -2,16 +2,16 @@ PlasX is a machine learning classifier for identifying plasmid sequences based o
 
 # Installation
 
-PlasX requires `python >3.7`. We recommend installing PlasX in a separate virtual environment using Anaconda, to make installing dependencies easier.
+PlasX requires `python >=3.7`. We recommend installing PlasX in a new virtual environment using Anaconda, to make installing dependencies easier.
 
 ```
-# Create virtual environment named "plasx" (change to whatever you like)
+# Create virtual environment named "plasx" (you can change the name to whatever you like)
 conda create -n plasx
 # Install dependencies
 conda install --name plasx -c anaconda -c conda-forge -c bioconda  numpy pandas scipy scikit-learn python-igraph numba python-blosc matplotlib seaborn pysam mmseqs2=10.6d92c
 ```
 
-Alternatively, create the environment and install dependencies in the same command
+Alternatively, create the environment and install dependencies in a single command
 
 ```
 conda create --name plasx -c anaconda -c conda-forge -c bioconda  numpy pandas scipy scikit-learn python-igraph numba python-blosc matplotlib seaborn pysam mmseqs2=10.6d92c
@@ -56,18 +56,18 @@ optional arguments:
 (plasx) 
 ```
 
-In this tutorial, we will identify plasmids using a PlasX model that was pretrained on a set of reference bacterial genomes and plasmid sequences from NCBI. We'll run this model on an example set of 40 contigs in `test/test-contigs.fa`, but you can repeat these steps with your own contigs. Running PlasX consists of three steps:
+In this tutorial, we will identify plasmids using a PlasX model that was pretrained on a set of reference bacterial genomes and plasmid sequences from NCBI. We'll run this model on an example set of 40 contigs in `test/test-contigs.fa`, **but you can repeat these steps with your own contigs**. Running PlasX consists of three steps:
 
 1. Identify genes and annotate COGs and Pfams using [anvio](https://merenlab.org/software/anvio/)
 2. Annotate *de novo* gene families
 3. Use PlasX to classify contigs as plasmid or non-plasmid sequences, based on the annotations in step #1 and #2
 
-## 0. Preliminary setup of your command line environment
+## Step 0. Preliminary setup of your command line environment
 
 
 ```bash
-# Change into the directory where PlasX was downloaded (e.g. where you ran `git clone`)
-cd /path/to/PlasX_install_folder
+# Change into the directory where PlasX was downloaded (e.g. where you ran `git clone`).
+cd /path/to/PlasX
 # Change into the `test` subdirectory that contains test-contigs.fa
 cd test
 
@@ -81,7 +81,7 @@ THREADS=4
 
 
 ```bash
-# We are going to run PlasX on a fasta file of sequences. The sequences look like this.
+# We are going to run PlasX on a fasta file containing 40 sequences. The file looks like this.
 head test-contigs.fa
 ```
 
@@ -96,11 +96,11 @@ head test-contigs.fa
     
     ...
 
-## 1. Identify genes and annotate COGs and Pfams using [anvio](https://merenlab.org/software/anvio/)
+## Step 1. Identify genes and annotate COGs and Pfams using [anvio](https://merenlab.org/software/anvio/)
 * anvio is a software platform for analyzing omics data. Please install it using instructions at https://merenlab.org/2016/06/26/installation-v2/.
 * Here, we use anvio to call and annotate genes. All of the relevant anvio commands are described below. But if you're curious about anvio's other functionalities, you can learn more at https://merenlab.org/tutorials/infant-gut/.
 
-### Create anvio contigs database
+### Create an anvio contigs database
 
 
 ```bash
@@ -185,9 +185,9 @@ head $PREFIX-cogs-and-pfams.txt
 
 
 
-## 2. Annotate *de novo* gene families
+## Step 2. Annotate *de novo* gene families
 
-### Change into the anaconda environment that contains PlasX
+### Change into the Anaconda environment that contains PlasX
 
 
 ```bash
@@ -205,15 +205,14 @@ plasx setup \
     --coefficients 'https://zenodo.org/record/5819401/files/PlasX_coefficients_and_gene_enrichments.txt.gz?download=1'
 ```
 
-### Annotate genes against pretrained database of *de novo* gene families
+### Annotate genes using pretrained database of *de novo* gene families
 
 
 ```bash
-# - The flag `--tmp tmp` will save intermediate files into the folder named "tmp". Leaving out this flag will removej
 plasx search_de_novo_families \
     -g $PREFIX-gene-calls.txt \
     -o $PREFIX-de-novo-families.txt \
-    --tmp tmp --overwrite
+    --overwrite
 ```
 
 
@@ -236,8 +235,8 @@ head $PREFIX-de-novo-families.txt
 
 
 
-## 3. Use PlasX to classify contigs as plasmid or non-plasmid sequences, based on the annotations in step #1 and #2
-* PlasX assigns a score to every contig. This score ranges from 0 (likely not plasmid) to 1 (likely plasmid). We recommend of applying a threshold of >0.5 to identify plasmids, but you can raise this threshold even higher (e.g. >0.9) to filter for predicted plasmids with higher confidence.
+## Step 3. Use PlasX to classify contigs as plasmid or non-plasmid sequences, based on the annotations in step #1 and #2
+PlasX assigns a score to every contig. This score ranges from 0 (likely not plasmid) to 1 (likely plasmid). We recommend applying a threshold of at least >0.5 to identify plasmids. You can raise this threshold even higher (e.g. >0.9) to filter for high-confidence plasmids.
 
 
 ```bash
