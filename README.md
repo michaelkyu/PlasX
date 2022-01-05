@@ -6,16 +6,16 @@ PlasX requires `python >=3.7`. We recommend installing PlasX in a new virtual en
 
 ```
 # Create virtual environment named "plasx" (you can change the name to whatever you like)
-conda create -n plasx
+conda create --name plasx
 # Install dependencies (this might take a few minutes for Anaconda to figure out the right package versions)
-conda install --name plasx -c anaconda -c conda-forge -c bioconda  numpy pandas scipy scikit-learn python-igraph numba python-blosc matplotlib seaborn pysam mmseqs2=10.6d92c
+conda install --name plasx  numpy pandas scipy scikit-learn python-igraph numba python-blosc mmseqs2=10.6d92c
 ```
 
 Alternatively, create the environment and install dependencies in a single command
 
 ```
 # (this might take a few minutes for Anaconda to figure out the right package versions)
-conda create --name plasx -c anaconda -c conda-forge -c bioconda  numpy pandas scipy scikit-learn python-igraph numba python-blosc matplotlib seaborn pysam mmseqs2=10.6d92c
+conda create --name plasx  numpy pandas scipy scikit-learn python-igraph numba python-blosc mmseqs2=10.6d92c
 ```
 
 Then, activate the new environment
