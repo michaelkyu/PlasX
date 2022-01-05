@@ -1,0 +1,387 @@
+gene_callers_id	source	accession	function	e_value
+0	COG14_FUNCTION	COG0187	DNA gyrase/topoisomerase IV, subunit B	4.4e-136
+1	COG14_FUNCTION	COG0542	ATP-dependent Clp protease ATP-binding subunit ClpA	1.7e-95
+3	COG14_FUNCTION	COG3512	CRISPR/Cas system-associated protein Cas2, endoribonuclease	2.1e-28
+4	COG14_FUNCTION	COG1518	CRISPR/Cas system-associated endonuclease Cas1	3.1e-30
+5	COG14_FUNCTION	COG1393	Arsenate reductase and related proteins, glutaredoxin family	1.9e-61
+6	COG14_FUNCTION	COG0468	RecA/RadA recombinase	4.4e-180
+7	COG14_FUNCTION	COG1058!!!COG1546	Predicted nucleotide-utilizing enzyme related to molybdopterin-biosynthesis enzyme MoeA!!!Nicotinamide mononucleotide (NMN) deamidase PncC	7.8e-170
+8	COG14_FUNCTION	COG2818	3-methyladenine DNA glycosylase Tag	3.1e-21
+9	COG14_FUNCTION	COG0632	Holliday junction resolvasome RuvABC DNA-binding subunit	6.8e-84
+11	COG14_FUNCTION	COG0323	DNA mismatch repair ATPase MutL	6.1e-283
+13	COG14_FUNCTION	COG3279	DNA-binding response regulator, LytR/AlgR family	9.7e-28
+15	COG14_FUNCTION	COG0249	DNA mismatch repair ATPase MutS	0
+16	COG14_FUNCTION	COG4550	Cell fate regulator YmcA, YheA/YmcA/DUF963 family (controls sporulation, competence, biofilm development)	5e-13
+17	COG14_FUNCTION	COG1438	Arginine repressor	1.2e-42
+18	COG14_FUNCTION	COG0018	Arginyl-tRNA synthetase	4e-278
+19	COG14_FUNCTION	COG0015	Adenylosuccinate lyase	2.7e-242
+20	COG14_FUNCTION	COG1893	Ketopantoate reductase	3.9e-84
+21	COG14_FUNCTION	COG0026	Phosphoribosylaminoimidazole carboxylase (NCAIR synthetase)	1.9e-185
+22	COG14_FUNCTION	COG0041	Phosphoribosylcarboxyaminoimidazole (NCAIR) mutase	9.4e-73
+23	COG14_FUNCTION	COG0151	Phosphoribosylamine-glycine ligase	1.4e-219
+24	COG14_FUNCTION	COG3942	Surface antigen	9.1e-66
+27	COG14_FUNCTION	COG0334	Glutamate dehydrogenase/leucine dehydrogenase	2.9e-175
+28	COG14_FUNCTION	COG3705	ATP phosphoribosyltransferase regulatory subunit HisZ	7.7e-61
+29	COG14_FUNCTION	COG0040	ATP phosphoribosyltransferase	7.2e-68
+30	COG14_FUNCTION	COG0141	Histidinol dehydrogenase	1.1e-166
+31	COG14_FUNCTION	COG0131	Imidazoleglycerol phosphate dehydratase HisB	2.4e-65
+32	COG14_FUNCTION	COG0118	Imidazoleglycerol phosphate synthase glutamine amidotransferase subunit HisH	1.3e-66
+33	COG14_FUNCTION	COG0106	Phosphoribosylformimino-5-aminoimidazole carboxamide ribonucleotide (ProFAR) isomerase	3e-81
+34	COG14_FUNCTION	COG0107	Imidazole glycerol phosphate synthase subunit HisF	5.5e-102
+35	COG14_FUNCTION	COG0139!!!COG0140	Phosphoribosyl-AMP cyclohydrolase!!!Phosphoribosyl-ATP pyrophosphohydrolase	2.3e-85
+36	COG14_FUNCTION	COG2723	Beta-glucosidase/6-phospho-beta-glucosidase/beta-galactosidase	8.2e-174
+37	COG14_FUNCTION	COG1387	Histidinol phosphatase or related hydrolase of the PHP family	2.2e-58
+39	COG14_FUNCTION	COG0053	Divalent metal cation (Fe/Co/Zn/Cd) transporter	8.1e-89
+40	COG14_FUNCTION	COG3589	Uncharacterized protein	1.4e-72
+41	COG14_FUNCTION	COG1158	Transcription termination factor Rho	5.5e-138
+42	COG14_FUNCTION	COG0639	Diadenosine tetraphosphatase ApaH/serine/threonine protein phosphatase, PP2A family	2.2e-51
+43	COG14_FUNCTION	COG0583	DNA-binding transcriptional regulator, LysR family	4.1e-64
+44	COG14_FUNCTION	COG0726	Peptidoglycan/xylan/chitin deacetylase, PgdA/CDA1 family	1.6e-52
+46	COG14_FUNCTION	COG1966	Carbon starvation protein CstA	1.1e-171
+48	COG14_FUNCTION	COG3049	Penicillin V acylase or related amidase, Ntn superfamily	2.2e-133
+51	COG14_FUNCTION	COG4870	Cysteine protease, C1A family	5.4e-116
+52	COG14_FUNCTION	COG1105	Fructose-1-phosphate kinase or kinase (PfkB)	1.9e-52
+53	COG14_FUNCTION	COG0656	Aldo/keto reductase, related to diketogulonate reductase	4.6e-109
+54	COG14_FUNCTION	COG2207!!!COG4753	AraC-type DNA-binding domain and AraC-containing proteins!!!Two-component response regulator, YesN/AraC family, consists of REC and AraC-type DNA-binding domains	3.4e-66
+58	COG14_FUNCTION	COG1346	Putative effector of murein hydrolase	1.3e-65
+59	COG14_FUNCTION	COG1380	Putative effector of murein hydrolase LrgA, UPF0299 family	2.8e-16
+61	COG14_FUNCTION	COG0112	Glycine/serine hydroxymethyltransferase	7.8e-175
+63	COG14_FUNCTION	COG1386	Chromosome segregation and condensation protein ScpB	3.2e-46
+64	COG14_FUNCTION	COG1354	Chromatin segregation and condensation protein Rec8/ScpA/Scc1, kleisin family	3.1e-52
+65	COG14_FUNCTION	COG1994	Zn-dependent protease (includes SpoIVFB)	9.8e-19
+66	COG14_FUNCTION	COG0323!!!COG1293	DNA mismatch repair ATPase MutL!!!Predicted component of the ribosome quality control (RQC) complex, YloA/Tae2 family, contains fibronectin-binding (FbpA) and DUF814 domains	3.2e-146
+67	COG14_FUNCTION	COG0249	DNA mismatch repair ATPase MutS	6.8e-290
+69	COG14_FUNCTION	COG3279	DNA-binding response regulator, LytR/AlgR family	2e-37
+70	COG14_FUNCTION	COG3290	Sensor histidine kinase regulating citrate/malate metabolism	2.5e-54
+71	COG14_FUNCTION	COG0373	Glutamyl-tRNA reductase	1.2e-41
+72	COG14_FUNCTION	COG0452	Phosphopantothenoylcysteine synthetase/decarboxylase	2.6e-56
+73	COG14_FUNCTION	COG0791	Cell wall-associated hydrolase, NlpC family	9.7e-27
+74	COG14_FUNCTION	COG1696	D-alanyl-lipoteichoic acid acyltransferase DltB, MBOAT superfamily	3.7e-11
+79	COG14_FUNCTION	COG1396	Transcriptional regulator, contains XRE-family HTH domain	2.7e-09
+80	COG14_FUNCTION	COG0629	Single-stranded DNA-binding protein	9e-23
+85	COG14_FUNCTION	COG0497	DNA repair ATPase RecN	7.9e-94
+88	COG14_FUNCTION	COG4200	Uncharacterized protein	3.4e-24
+89	COG14_FUNCTION	COG4200	Uncharacterized protein	2.6e-29
+90	COG14_FUNCTION	COG0600	ABC-type nitrate/sulfonate/bicarbonate transport system, permease component	6.3e-74
+91	COG14_FUNCTION	COG1116	ABC-type nitrate/sulfonate/bicarbonate transport system, ATPase component	2.8e-47
+92	COG14_FUNCTION	COG0465	ATP-dependent Zn proteases	4.6e-164
+93	COG14_FUNCTION	COG0018	Arginyl-tRNA synthetase	1.3e-84
+94	COG14_FUNCTION	COG1268	Biotin transporter BioY	8.4e-21
+96	COG14_FUNCTION	COG1192	Cellulose biosynthesis protein BcsQ	1.8e-105
+97	COG14_FUNCTION	COG1475	Chromosome segregation protein Spo0J, contains ParB-like nuclease domain	4.1e-51
+99	COG14_FUNCTION	COG1669	Predicted nucleotidyltransferase	6.1e-13
+100	COG14_FUNCTION	COG0582	Integrase	1.7e-73
+101	COG14_FUNCTION	COG1996	DNA-directed RNA polymerase, subunit RPC12/RpoP, contains C4-type Zn-finger	3.6e-18
+103	COG14_FUNCTION	COG4227	Antirestriction protein ArdC	9.3e-50
+104	COG14_FUNCTION	COG0553!!!COG0827!!!COG4646	Superfamily II DNA or RNA helicase, SNF2 family!!!Adenine-specific DNA methylase!!!Adenine-specific DNA methylase, N12 class	4.6e-10
+105	COG14_FUNCTION	COG1122	Energy-coupling factor transporter ATP-binding protein EcfA2	2e-57
+107	COG14_FUNCTION	COG5418	Predicted secreted protein	3.8e-30
+108	COG14_FUNCTION	COG0103	Ribosomal protein S9	1.5e-66
+109	COG14_FUNCTION	COG0102	Ribosomal protein L13	3.5e-77
+110	COG14_FUNCTION	COG0675	Transposase	1.7e-131
+111	COG14_FUNCTION	COG1943	REP element-mobilizing transposase RayT	1.5e-50
+113	COG14_FUNCTION	COG1478	F420-0:Gamma-glutamyl ligase (F420 biosynthesis)	6e-164
+114	COG14_FUNCTION	COG0607	Rhodanese-related sulfurtransferase	1.7e-25
+115	COG14_FUNCTION	COG2191	Formylmethanofuran dehydrogenase subunit E	1.7e-07
+116	COG14_FUNCTION	COG2265	tRNA/tmRNA/rRNA uracil-C5-methylase, TrmA/RlmC/RlmD family	3.3e-33
+118	COG14_FUNCTION	COG1609	DNA-binding transcriptional regulator, LacI/PurR family	1.1e-58
+119	COG14_FUNCTION	COG0507	ATP-dependent exoDNAse (exonuclease V), alpha subunit, helicase superfamily I	2.4e-166
+121	COG14_FUNCTION	COG0583	DNA-binding transcriptional regulator, LysR family	2.1e-105
+123	COG14_FUNCTION	COG1607	Acyl-CoA hydrolase	3.6e-43
+124	COG14_FUNCTION	COG0583	DNA-binding transcriptional regulator, LysR family	2.1e-71
+125	COG14_FUNCTION	COG0679	Predicted permease	4.5e-90
+128	COG14_FUNCTION	COG1674	DNA segregation ATPase FtsK/SpoIIIE and related proteins	5.1e-24
+130	COG14_FUNCTION	COG2946	DNA relaxase NicK	1.1e-266
+133	COG14_FUNCTION	COG0433	Archaeal DNA helicase HerA or a related bacterial ATPase, contains HAS-barrel and ATPase domains	5.9e-270
+135	COG14_FUNCTION	COG2801	Transposase InsO and inactivated derivatives	1.8e-72
+138	COG14_FUNCTION	COG3206	Uncharacterized protein involved in exopolysaccharide biosynthesis	3.9e-83
+141	COG14_FUNCTION	COG0776	Bacterial nucleoid DNA-binding protein	4.9e-21
+142	COG14_FUNCTION	COG3843	Type IV secretory pathway, VirD2 components (relaxase)	8.8e-14
+148	COG14_FUNCTION	COG0675	Transposase	2.7e-67
+149	COG14_FUNCTION	COG1943	REP element-mobilizing transposase RayT	5.9e-19
+150	COG14_FUNCTION	COG1112!!!COG1198	Superfamily I DNA and/or RNA helicase!!!Primosomal protein N' (replication factor Y) - superfamily II helicase	1.6e-13
+152	COG14_FUNCTION	COG0577!!!COG1136	ABC-type antimicrobial peptide transport system, permease component!!!ABC-type lipoprotein export system, ATPase component	7.4e-41
+153	COG14_FUNCTION	COG4974	Site-specific recombinase XerD	4.9e-169
+154	COG14_FUNCTION	COG0292	Ribosomal protein L20	1.1e-35
+156	COG14_FUNCTION	COG5527	Protein involved in initiation of plasmid replication	2.6e-28
+158	COG14_FUNCTION	COG1695	DNA-binding transcriptional regulator, PadR family	1.3e-70
+159	COG14_FUNCTION	COG0745	DNA-binding response regulator, OmpR family, contains REC and winged-helix (wHTH) domain	2.9e-10
+160	COG14_FUNCTION	COG0745	DNA-binding response regulator, OmpR family, contains REC and winged-helix (wHTH) domain	4.1e-16
+161	COG14_FUNCTION	COG1961	Site-specific DNA recombinase related to the DNA invertase Pin	9.3e-66
+165	COG14_FUNCTION	COG1598	Predicted nuclease of the RNAse H fold, HicB family	9.4e-36
+170	COG14_FUNCTION	COG1961	Site-specific DNA recombinase related to the DNA invertase Pin	1.2e-61
+172	COG14_FUNCTION	COG0286	Type I restriction-modification system, DNA methylase subunit	1e-87
+173	COG14_FUNCTION	COG0732	Restriction endonuclease S subunit	5.7e-77
+174	COG14_FUNCTION	COG0732	Restriction endonuclease S subunit	2.3e-38
+175	COG14_FUNCTION	COG0582	Integrase	1.6e-112
+176	COG14_FUNCTION	COG0732	Restriction endonuclease S subunit	7.6e-54
+177	COG14_FUNCTION	COG0582	Integrase	1.5e-18
+179	COG14_FUNCTION	COG1192	Cellulose biosynthesis protein BcsQ	8.3e-23
+180	COG14_FUNCTION	COG1475	Chromosome segregation protein Spo0J, contains ParB-like nuclease domain	2.5e-16
+183	COG14_FUNCTION	COG3843	Type IV secretory pathway, VirD2 components (relaxase)	1.4e-28
+184	COG14_FUNCTION	COG0553!!!COG0827!!!COG4646	Superfamily II DNA or RNA helicase, SNF2 family!!!Adenine-specific DNA methylase!!!Adenine-specific DNA methylase, N12 class	1.6e-239
+185	COG14_FUNCTION	COG4974	Site-specific recombinase XerD	2.9e-38
+187	COG14_FUNCTION	COG4734	Antirestriction protein	9.3e-29
+189	COG14_FUNCTION	COG4974	Site-specific recombinase XerD	4.1e-116
+192	COG14_FUNCTION	COG1961	Site-specific DNA recombinase related to the DNA invertase Pin	6.1e-56
+193	COG14_FUNCTION	COG1961	Site-specific DNA recombinase related to the DNA invertase Pin	3.5e-71
+162	Pfam	PF17295.2	Domain of unknown function (DUF5348)	7e-28
+165	Pfam	PF05534.12	HicB family	1.1e-13
+165	Pfam	PF15919.5	HicB_like antitoxin of bacterial toxin-antitoxin system	4.1e-17
+158	Pfam	PF13601.6	Winged helix DNA-binding domain	3.7e-10
+158	Pfam	PF03551.14	Transcriptional regulator PadR-like family	1.7e-12
+156	Pfam	PF01051.21	Initiator Replication protein	1.3e-37
+161	Pfam	PF00239.21	Resolvase, N terminal domain	2.6e-32
+160	Pfam	PF00486.28	Transcriptional regulatory protein, C terminal	2.7e-26
+159	Pfam	PF00486.28	Transcriptional regulatory protein, C terminal	5.7e-23
+152	Pfam	PF00005.27	ABC transporter	4.4e-16
+150	Pfam	PF11784.8	Protein of unknown function (DUF3320)	1.4e-11
+148	Pfam	PF01385.19	Probable transposase	5.9e-15
+148	Pfam	PF07282.11	Putative transposase DNA-binding domain	1.7e-09
+153	Pfam	PF00589.22	Phage integrase family	1.9e-55
+153	Pfam	PF02899.17	Phage integrase, N-terminal SAM-like domain	6.8e-22
+153	Pfam	PF13495.6	Phage integrase, N-terminal SAM-like domain	2.2e-10
+154	Pfam	PF00453.18	Ribosomal protein L20	5.9e-29
+149	Pfam	PF01797.16	Transposase IS200 like	2.6e-35
+105	Pfam	PF13304.6	AAA domain, putative AbiEii toxin, Type IV TA system	5.7e-14
+96	Pfam	PF13614.6	AAA domain	1.8e-77
+105	Pfam	PF00005.27	ABC transporter	2.9e-35
+96	Pfam	PF02374.15	Anion-transporting ATPase	6.1e-13
+96	Pfam	PF01656.23	CobQ/CobB/MinD/ParA nucleotide binding domain	5.6e-32
+96	Pfam	PF06564.12	Cellulose biosynthesis protein BcsQ	1.4e-18
+101	Pfam	PF14311.6	Probable Zinc-ribbon domain	1.7e-17
+106	Pfam	PF07155.12	ECF-type riboflavin transporter, S component	1.2e-12
+96	Pfam	PF00142.18	4Fe-4S iron sulfur cluster binding proteins, NifH/frxC family	2.5e-17
+96	Pfam	PF09140.11	ATPase MipZ	2.8e-20
+99	Pfam	PF01909.23	Nucleotidyltransferase domain	8.3e-14
+96	Pfam	PF10609.9	NUBPL iron-transfer P-loop NTPase	8.2e-16
+97	Pfam	PF02195.18	ParB-like nuclease domain	8.8e-32
+100	Pfam	PF00589.22	Phage integrase family	3.5e-32
+99	Pfam	PF18765.1	Polymerase beta, Nucleotidyltransferase	3.8e-14
+123	Pfam	PF03061.22	Thioesterase superfamily	1.9e-17
+129	Pfam	PF14359.6	Domain of unknown function (DUF4406)	3.3e-36
+127	Pfam	PF14057.6	GGGtGRT protein	1e-77
+124	Pfam	PF00126.27	Bacterial regulatory helix-turn-helix protein, lysR family	9.7e-22
+121	Pfam	PF00126.27	Bacterial regulatory helix-turn-helix protein, lysR family	1.1e-20
+130	Pfam	PF12844.7	Helix-turn-helix domain	2.3e-15
+130	Pfam	PF01381.22	Helix-turn-helix	5.7e-19
+130	Pfam	PF13560.6	Helix-turn-helix domain	1e-12
+121	Pfam	PF03466.20	LysR substrate binding domain	6e-46
+124	Pfam	PF03466.20	LysR substrate binding domain	1.2e-33
+125	Pfam	PF03547.18	Membrane transport protein	1.7e-23
+130	Pfam	PF02486.19	Replication initiation factor	1.3e-67
+130	Pfam	PF18106.1	Rolling Circle replication initiation protein N-terminal domain	2.2e-34
+92	Pfam	PF00004.29	ATPase family associated with various cellular activities (AAA)	1e-36
+92	Pfam	PF17862.1	AAA+ lid domain	8.2e-17
+89	Pfam	PF12730.7	ABC-2 family transporter protein	3.7e-19
+88	Pfam	PF12730.7	ABC-2 family transporter protein	2.1e-17
+91	Pfam	PF00005.27	ABC transporter	5.3e-18
+93	Pfam	PF03485.16	Arginyl tRNA synthetase N terminal domain	1.4e-19
+94	Pfam	PF02632.14	BioY family	3.2e-34
+90	Pfam	PF00528.22	Binding-protein-dependent transport system inner membrane component	4.4e-26
+93	Pfam	PF14501.6	GHKL domain	3.5e-20
+92	Pfam	PF01434.18	Peptidase family M41	1.5e-68
+93	Pfam	PF00750.19	tRNA synthetases class I (R)	3.9e-44
+53	Pfam	PF00248.21	Aldo/keto reductase family	1.4e-48
+48	Pfam	PF02275.18	Linear amide C-N hydrolases, choloylglycine hydrolase family	1.1e-54
+51	Pfam	PF07833.11	Copper amine oxidase N-terminal domain	2.6e-12
+54	Pfam	PF17853.1	GGDEF-like domain	5.7e-13
+54	Pfam	PF12833.7	Helix-turn-helix domain	2e-16
+54	Pfam	PF00165.23	Bacterial regulatory helix-turn-helix proteins, AraC family	1.3e-10
+59	Pfam	PF03788.14	LrgA family	1.6e-27
+58	Pfam	PF04172.16	LrgB-like family 	2.3e-79
+51	Pfam	PF00112.23	Papain family cysteine protease	3.5e-16
+52	Pfam	PF00294.24	pfkB family carbohydrate kinase	2.6e-50
+52	Pfam	PF08543.12	Phosphomethylpyrimidine kinase	1.2e-12
+54	Pfam	PF00072.24	Response regulator receiver domain	2.9e-27
+76	Pfam	PF17989.1	Actin like proteins N terminal domain	1.6e-12
+83	Pfam	PF12684.7	PDDEXK-like domain of unknown function (DUF3799)	2.3e-53
+82	Pfam	PF02732.15	ERCC4 domain	7.5e-09
+72	Pfam	PF02441.19	Flavoprotein	1.2e-21
+79	Pfam	PF01381.22	Helix-turn-helix	2.1e-12
+73	Pfam	PF00877.19	NlpC/P60 family	7.6e-33
+73	Pfam	PF08239.11	Bacterial SH3 domain	8.6e-10
+80	Pfam	PF00436.25	Single-strand binding protein family	2e-31
+76	Pfam	PF06406.11	StbA protein	9.1e-11
+179	Pfam	PF13614.6	AAA domain	1.4e-42
+179	Pfam	PF02374.15	Anion-transporting ATPase	3e-10
+179	Pfam	PF01656.23	CobQ/CobB/MinD/ParA nucleotide binding domain	2.3e-19
+179	Pfam	PF06564.12	Cellulose biosynthesis protein BcsQ	1.5e-11
+179	Pfam	PF00142.18	4Fe-4S iron sulfur cluster binding proteins, NifH/frxC family	9.5e-13
+173	Pfam	PF01420.19	Type I restriction modification DNA specificity domain	5.9e-30
+176	Pfam	PF01420.19	Type I restriction modification DNA specificity domain	1.6e-19
+174	Pfam	PF01420.19	Type I restriction modification DNA specificity domain	4.5e-09
+179	Pfam	PF09140.11	ATPase MipZ	1.9e-11
+172	Pfam	PF02384.16	N-6 DNA Methylase	3.7e-29
+179	Pfam	PF10609.9	NUBPL iron-transfer P-loop NTPase	5.4e-13
+175	Pfam	PF00589.22	Phage integrase family	1.5e-28
+177	Pfam	PF00589.22	Phage integrase family	5.9e-14
+175	Pfam	PF13495.6	Phage integrase, N-terminal SAM-like domain	1.9e-11
+170	Pfam	PF00239.21	Resolvase, N terminal domain	1.6e-35
+179	Pfam	PF07015.11	VirC1 protein	1.2e-07
+133	Pfam	PF12846.7	AAA-like domain	2.2e-12
+141	Pfam	PF00216.21	Bacterial DNA-binding protein	6.3e-37
+135	Pfam	PF13276.6	HTH-like domain	3.7e-16
+141	Pfam	PF18291.1	HU domain fused to wHTH, Ig, or Glycine-rich motif	1.8e-14
+143	Pfam	PF05713.11	Bacterial mobilisation protein (MobC)	8.2e-13
+138	Pfam	PF01076.19	Plasmid recombination enzyme	8.3e-23
+142	Pfam	PF03432.14	Relaxase/Mobilisation nuclease domain 	1.4e-35
+143	Pfam	PF01402.21	Ribbon-helix-helix protein, copG family	7e-08
+135	Pfam	PF00665.26	Integrase core domain	3.1e-26
+135	Pfam	PF13333.6	Integrase core domain	1.1e-10
+135	Pfam	PF13683.6	Integrase core domain	7.2e-10
+132	Pfam	PF12648.7	TcpE family	2.9e-31
+1	Pfam	PF07724.14	AAA domain (Cdc48 subfamily)	1e-50
+1	Pfam	PF07728.14	AAA domain (dynein-related subfamily)	9.8e-12
+8	Pfam	PF03352.13	Methyladenine glycosylase	5.3e-23
+5	Pfam	PF03960.15	ArsC family	1e-25
+6	Pfam	PF06745.13	KaiC	1.5e-09
+2	Pfam	PF09711.10	CRISPR-associated protein (Cas_Csn2)	9.7e-47
+7	Pfam	PF02464.17	Competence-damaged protein	8.5e-50
+7	Pfam	PF18146.1	Damage-inducible protein CinA KH domain	1.2e-23
+1	Pfam	PF10431.9	C-terminal, D2-small domain, of ClpB protein 	1.3e-26
+3	Pfam	PF09827.9	CRISPR associated protein Cas2	6.8e-21
+11	Pfam	PF01119.19	DNA mismatch repair protein, C-terminal domain	1.9e-38
+5	Pfam	PF00462.24	Glutaredoxin	2.4e-09
+11	Pfam	PF02518.26	Histidine kinase-, DNA gyrase B-, and HSP90-like ATPase	2.3e-10
+11	Pfam	PF13589.6	Histidine kinase-, DNA gyrase B-, and HSP90-like ATPase	1.3e-16
+9	Pfam	PF14520.6	Helix-hairpin-helix domain	5.5e-15
+7	Pfam	PF00994.24	Probable molybdopterin binding domain	1.6e-34
+11	Pfam	PF08676.11	MutL C terminal dimerisation domain	1.1e-40
+6	Pfam	PF08423.11	Rad51	3.8e-13
+6	Pfam	PF00154.21	recA bacterial DNA recombination protein	2.2e-142
+9	Pfam	PF07499.13	RuvA, C-terminal domain	3.4e-14
+9	Pfam	PF01330.21	RuvA N terminal domain	7.7e-22
+19	Pfam	PF10397.9	Adenylosuccinate lyase C-terminus	1.8e-29
+22	Pfam	PF00731.20	AIR carboxylase	6.3e-65
+17	Pfam	PF01316.21	Arginine repressor, DNA binding domain	1.7e-27
+17	Pfam	PF02863.18	Arginine repressor, C-terminal domain	3.8e-23
+18	Pfam	PF03485.16	Arginyl tRNA synthetase N terminal domain	3.7e-23
+21	Pfam	PF02222.22	ATP-grasp domain	5e-49
+21	Pfam	PF02655.14	ATP-grasp domain	2.3e-09
+23	Pfam	PF02655.14	ATP-grasp domain	3.5e-08
+16	Pfam	PF06133.11	Control of competence regulator ComK, YlbF/YmcA	6.9e-17
+23	Pfam	PF02786.17	Carbamoyl-phosphate synthase L chain, ATP binding domain	3.6e-08
+21	Pfam	PF07478.13	D-ala D-ala ligase C-terminus	1.8e-08
+18	Pfam	PF05746.15	DALR anticodon binding domain	3.4e-36
+14	Pfam	PF11457.8	Protein of unknown function (DUF3021)	2.3e-09
+23	Pfam	PF01071.19	Phosphoribosylglycinamide synthetase, ATP-grasp (A) domain	2e-84
+23	Pfam	PF02843.16	Phosphoribosylglycinamide synthetase, C domain	3.8e-22
+23	Pfam	PF02844.15	Phosphoribosylglycinamide synthetase, N domain	6.4e-35
+19	Pfam	PF00206.20	Lyase	6.7e-74
+13	Pfam	PF04397.15	LytTr DNA-binding domain	3e-14
+15	Pfam	PF01624.20	MutS domain I	1.3e-47
+15	Pfam	PF05188.17	MutS domain II	1e-20
+15	Pfam	PF05192.18	MutS domain III	2.3e-47
+15	Pfam	PF05190.18	MutS family domain IV	1.9e-32
+15	Pfam	PF00488.21	MutS domain V	1.6e-84
+21	Pfam	PF17769.1	Phosphoribosylaminoimidazole carboxylase C-terminal domain	2.1e-20
+18	Pfam	PF00750.19	tRNA synthetases class I (R)	6.5e-103
+47	Pfam	PF13561.6	Enoyl-(Acyl carrier protein) reductase	1.2e-10
+41	Pfam	PF00006.25	ATP synthase alpha/beta family, nucleotide-binding domain	2.3e-24
+39	Pfam	PF01545.21	Cation efflux family	9e-51
+36	Pfam	PF00150.18	Cellulase (glycosyl hydrolase family 5)	1.1e-08
+46	Pfam	PF02554.14	Carbon starvation protein CstA	5.4e-132
+46	Pfam	PF13722.6	5TM C-terminal transporter carbon starvation CstA	9.5e-39
+44	Pfam	PF16403.5	Domain of unknown function (DUF5011)	4.4e-19
+40	Pfam	PF05913.11	Bacterial protein of unknown function (DUF871)	2e-106
+36	Pfam	PF00232.18	Glycosyl hydrolase family 1	2.8e-117
+43	Pfam	PF00126.27	Bacterial regulatory helix-turn-helix protein, lysR family	1.3e-25
+43	Pfam	PF03466.20	LysR substrate binding domain	1.1e-21
+42	Pfam	PF00149.28	Calcineurin-like phosphoesterase	9.5e-17
+42	Pfam	PF12850.7	Calcineurin-like phosphoesterase superfamily domain	5.5e-10
+37	Pfam	PF02811.19	PHP domain	3.5e-21
+44	Pfam	PF01522.21	Polysaccharide deacetylase	5.2e-32
+41	Pfam	PF07497.12	Rho termination factor, RNA-binding domain	3.6e-31
+39	Pfam	PF16916.5	Dimerisation domain of Zinc Transporter	1.1e-16
+119	Pfam	PF13086.6	AAA domain	4.9e-13
+119	Pfam	PF13245.6	AAA domain	8.2e-42
+119	Pfam	PF13604.6	AAA domain	1.9e-47
+116	Pfam	PF02353.20	Mycolic acid cyclopropane synthetase	2.3e-09
+116	Pfam	PF05219.12	DREV methyltransferase	1.5e-07
+113	Pfam	PF01996.16	F420-0:Gamma-glutamyl ligase	7.6e-83
+115	Pfam	PF02663.14	FmdE, Molybdenum formylmethanofuran dehydrogenase operon 	2.3e-08
+119	Pfam	PF05127.14	Helicase	5.3e-11
+110	Pfam	PF12323.8	Helix-turn-helix domain	2.5e-23
+118	Pfam	PF00356.21	Bacterial regulatory proteins, lacI family	3.6e-15
+116	Pfam	PF08241.12	Methyltransferase domain	6.6e-14
+116	Pfam	PF08242.12	Methyltransferase domain	9.7e-14
+116	Pfam	PF13489.6	Methyltransferase domain	4.7e-12
+116	Pfam	PF13649.6	Methyltransferase domain	1.7e-18
+116	Pfam	PF13847.6	Methyltransferase domain	6e-23
+116	Pfam	PF02390.17	Putative methyltransferase 	8.1e-09
+116	Pfam	PF05175.14	Methyltransferase small domain	9.7e-09
+110	Pfam	PF01385.19	Probable transposase	6.6e-17
+110	Pfam	PF07282.11	Putative transposase DNA-binding domain	1.4e-24
+116	Pfam	PF01135.19	Protein-L-isoaspartate(D-aspartate) O-methyltransferase (PCMT)	1e-08
+118	Pfam	PF13377.6	Periplasmic binding protein-like domain	2.1e-26
+119	Pfam	PF02562.16	PhoH-like protein	1.1e-07
+119	Pfam	PF05970.14	PIF1-like helicase	9.8e-12
+116	Pfam	PF06325.13	Ribosomal protein L11 methyltransferase (PrmA)	7.3e-08
+114	Pfam	PF00581.20	Rhodanese-like domain	1.4e-17
+109	Pfam	PF00572.18	Ribosomal protein L13	3.2e-61
+108	Pfam	PF00380.19	Ribosomal protein S9/S16	4.5e-51
+119	Pfam	PF18335.1	ATP-dependent RecD-like DNA helicase SH3 domain	1.1e-26
+119	Pfam	PF00437.20	Type II/IV secretion system protein	4.5e-09
+116	Pfam	PF03848.14	Tellurite resistance protein TehB	1e-09
+116	Pfam	PF05724.11	Thiopurine S-methyltransferase (TPMT)	6.3e-08
+116	Pfam	PF05958.11	tRNA (Uracil-5-)-methyltransferase	1e-08
+116	Pfam	PF01209.18	ubiE/COQ5 methyltransferase family	2.6e-08
+119	Pfam	PF13538.6	UvrD-like helicase C-terminal domain	2.9e-20
+119	Pfam	PF01443.18	Viral (Superfamily 1) RNA helicase	4.8e-18
+111	Pfam	PF01797.16	Transposase IS200 like	6.4e-43
+24	Pfam	PF05257.16	CHAP domain	6.1e-17
+34	Pfam	PF01207.17	Dihydrouridine synthase (Dus)	4.2e-12
+33	Pfam	PF01207.17	Dihydrouridine synthase (Dus)	2.3e-10
+27	Pfam	PF00208.21	Glutamate/Leucine/Phenylalanine/Valine dehydrogenase	9.7e-87
+27	Pfam	PF02812.18	Glu/Leu/Phe/Val dehydrogenase, dimerisation domain	2.7e-54
+34	Pfam	PF04309.12	Glycerol-3-phosphate responsive antiterminator	3.9e-08
+32	Pfam	PF00117.28	Glutamine amidotransferase class-I	1.2e-24
+32	Pfam	PF07685.14	CobB/CobQ-like glutamine amidotransferase domain	1.1e-10
+29	Pfam	PF01634.18	ATP phosphoribosyltransferase	6.4e-51
+30	Pfam	PF00815.20	Histidinol dehydrogenase	2.4e-173
+34	Pfam	PF00977.21	Histidine biosynthesis protein	4.7e-91
+33	Pfam	PF00977.21	Histidine biosynthesis protein	5.7e-80
+31	Pfam	PF00475.18	Imidazoleglycerol-phosphate dehydratase	5.2e-65
+35	Pfam	PF03819.17	MazG nucleotide pyrophosphohydrolase domain	3.2e-08
+34	Pfam	PF03060.15	Nitronate monooxygenase	4e-10
+32	Pfam	PF07722.13	Peptidase C26	9.8e-09
+35	Pfam	PF01502.18	Phosphoribosyl-AMP cyclohydrolase	3.4e-35
+35	Pfam	PF01503.17	Phosphoribosyl-ATP pyrophosphohydrolase	1.2e-19
+32	Pfam	PF01174.19	SNO glutamine amidotransferase family	3.4e-11
+34	Pfam	PF02581.17	Thiamine monophosphate synthase	3.3e-08
+28	Pfam	PF13393.6	Histidyl-tRNA synthetase	4e-62
+71	Pfam	PF02826.19	D-isomer specific 2-hydroxyacid dehydrogenase, NAD binding domain	1.5e-10
+61	Pfam	PF00155.21	Aminotransferase class I and II	8.9e-14
+61	Pfam	PF00266.19	Aminotransferase class-V	2.5e-08
+61	Pfam	PF01212.21	Beta-eliminating lyase	9.9e-15
+68	Pfam	PF06133.11	Control of competence regulator ComK, YlbF/YmcA	1.5e-16
+66	Pfam	PF01119.19	DNA mismatch repair protein, C-terminal domain	8.6e-41
+71	Pfam	PF16924.5	Dipicolinate synthase subunit A N-terminal domain	2.9e-24
+66	Pfam	PF02518.26	Histidine kinase-, DNA gyrase B-, and HSP90-like ATPase	5.2e-13
+66	Pfam	PF13589.6	Histidine kinase-, DNA gyrase B-, and HSP90-like ATPase	5.5e-17
+70	Pfam	PF14501.6	GHKL domain	3.6e-24
+69	Pfam	PF04397.15	LytTr DNA-binding domain	1.4e-19
+66	Pfam	PF08676.11	MutL C terminal dimerisation domain	3e-43
+67	Pfam	PF01624.20	MutS domain I	2.6e-42
+67	Pfam	PF05188.17	MutS domain II	5.6e-30
+67	Pfam	PF05192.18	MutS domain III	9.1e-46
+67	Pfam	PF05190.18	MutS family domain IV	2.8e-32
+67	Pfam	PF00488.21	MutS domain V	1.1e-91
+69	Pfam	PF00072.24	Response regulator receiver domain	1.7e-19
+61	Pfam	PF00464.19	Serine hydroxymethyltransferase	5.6e-179
+64	Pfam	PF02616.14	Segregation and condensation protein ScpA	1.5e-41
+63	Pfam	PF04079.16	Segregation and condensation complex subunit ScpB	3.5e-57
+187	Pfam	PF07275.11	Antirestriction protein (ArdA)	2.9e-42
+194	Pfam	PF02368.18	Bacterial Ig-like domain (group 2)	3.2e-10
+192	Pfam	PF02796.15	Helix-turn-helix domain of resolvase	1.8e-08
+182	Pfam	PF05713.11	Bacterial mobilisation protein (MobC)	2.6e-09
+180	Pfam	PF02195.18	ParB-like nuclease domain	1.8e-13
+189	Pfam	PF00589.22	Phage integrase family	1.6e-36
+185	Pfam	PF00589.22	Phage integrase family	3.1e-30
+185	Pfam	PF02899.17	Phage integrase, N-terminal SAM-like domain	6.3e-11
+189	Pfam	PF02899.17	Phage integrase, N-terminal SAM-like domain	7.6e-08
+185	Pfam	PF13495.6	Phage integrase, N-terminal SAM-like domain	4e-13
+183	Pfam	PF03432.14	Relaxase/Mobilisation nuclease domain 	4.9e-49
+192	Pfam	PF00239.21	Resolvase, N terminal domain	9.2e-39
+193	Pfam	PF00239.21	Resolvase, N terminal domain	9.7e-24
