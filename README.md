@@ -26,8 +26,11 @@ conda activate plasx
 Finally, download PlasX (e.g. with `git clone`) and then install it with `pip`
 
 ```
+# Download the PlasX code
 git clone https://github.com/michaelkyu/plasx
-pip install PlasX
+# Change into the downloaded directory, and then install using pip
+cd plasx
+pip install .
 ```
 
 # Tutorial for predicting plasmids using PlasX
