@@ -26,7 +26,7 @@ conda activate plasx
 Finally, download PlasX (e.g. with `git clone`) and then install it with `pip`
 
 ```
-git clone git@github.com:michaelkyu/PlasX.git
+git clone https://github.com/michaelkyu/plasx
 pip install PlasX
 ```
 
