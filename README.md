@@ -15,7 +15,6 @@ conda install --name plasx -y -c anaconda -c conda-forge -c bioconda --override-
 Alternatively, create the environment and install dependencies in a single command
 
 ```
-# (this might take a few minutes for Anaconda to figure out the right package versions)
 conda create --name plasx -y -c anaconda -c conda-forge -c bioconda --override-channels --strict-channel-priority  numpy pandas scipy scikit-learn numba python-blosc mmseqs2=10.6d92c
 ```
 
