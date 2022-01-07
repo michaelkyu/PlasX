@@ -33,9 +33,9 @@ import io
 import time
 import os
 
-from plasx import utils
-
 def set_threads(threads=None):
+    from plasx import utils
+
     if threads is None:
         # Get the maximum number of cores on this machine
         threads = utils.get_max_threads()

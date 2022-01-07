@@ -39,7 +39,7 @@ def gene_calls_to_fasta(gene_calls, source=None, output=None, compress=None):
     if output is not None:
         # Write fasta into a plain text file (optionally, compressed)
         if compress:
-            utils.write_compressed_txt(fasta, output)
+            compress_utils.write_compressed_txt(fasta, output)
         else:
             with open(output, 'wb') as f:
                 f.write(fasta+'\n')
@@ -170,7 +170,7 @@ def write_fasta(fasta, output, separate=False, compressed=False, input_type=None
             fasta = fasta_dict_2_str(fasta)
 
         if compressed:
-            write_compressed_txt(fasta, output)
+            compress_utils.write_compressed_txt(fasta, output)
         else:
             with open(output, 'wt') as o:
                 o.write(fasta)
@@ -239,7 +239,7 @@ def get_fasta_dict(fasta, input_type=None, input_fmt='fasta', subset=None, verbo
 
         if input_type=='pickle':
             if verbose: print('Reading {}'.format(fasta))
-            fasta = unpickle(fasta)
+            fasta = compress_utils.unpickle(fasta)
             if isinstance(fasta, bytes):
                 fasta = fasta.decode()
 

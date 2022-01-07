@@ -931,10 +931,14 @@ def createdb(fa, output):
 def get_unique_sequences(db,
                          mmseqs_cmd=None,
                          table_output=None,
-                         createsubdb_output=None):
+                         createsubdb_output=None,
+                         threads=None):
 
     if mmseqs_cmd is None:
         mmseqs_cmd = 'mmseqs'
+
+    if threads is None:
+        threads = utils.get_max_threads()
 
     with tempfile.TemporaryDirectory() as tempdir:
         clusthash = os.path.join(tempdir, 'clusthash')
@@ -942,18 +946,21 @@ def get_unique_sequences(db,
         if table_output is None:
             table_output = os.path.join(tempdir, 'clu.tsv')
 
-        cmd = [mmseqs_cmd, 'clusthash', db, clusthash, '--min-seq-id', '1.0']
-        print(' '.join(map(str, cmd)))
-        subprocess.run(cmd, check=True) 
+        cmd = [mmseqs_cmd, 'clusthash', db, clusthash, '--min-seq-id', '1.0', '--threads', threads]
+        utils.run_cmd(' '.join(map(str, cmd)), verbose=True)
+        # print(' '.join(map(str, cmd)))
+        # subprocess.run(cmd, check=True) 
 
-        cmd = [mmseqs_cmd, 'clust', db, clusthash, clu]
-        print(' '.join(map(str, cmd)))
-        subprocess.run(cmd, check=True)
+        cmd = [mmseqs_cmd, 'clust', db, clusthash, clu, '--threads', threads]
+        utils.run_cmd(' '.join(map(str, cmd)), verbose=True)
+        # print(' '.join(map(str, cmd)))
+        # subprocess.run(cmd, check=True)
 
         # Two column-tabler of cluster memberships
-        cmd = [mmseqs_cmd, 'createtsv', db, db, clu, table_output]
-        print(' '.join(map(str, cmd)))
-        subprocess.run(cmd, check=True)
+        cmd = [mmseqs_cmd, 'createtsv', db, db, clu, table_output, '--threads', threads]
+        utils.run_cmd(' '.join(map(str, cmd)), verbose=True)
+        # print(' '.join(map(str, cmd)))
+        # subprocess.run(cmd, check=True)
 
         pickle_clu(table_output)
         unique_ids = utils.unpickle('{0}.pkl.blp'.format(table_output))['representative'].unique()
@@ -1607,7 +1614,7 @@ def prepare_assemblies_for_plasmid_search(samples, table_summary, table_dir, mms
     create_mmseqs_db(fasta_paths, mmseqs_prefix)
 
 
-def create_mmseqs_db(fasta, output_prefix):
+def create_mmseqs_db(fasta, output_prefix, threads=None):
     """
     Concatenate multiple fasta files together and create an mmseqs db
     -- Fasta headers are automatically renamed to integers, for more efficient memory use
@@ -1633,7 +1640,8 @@ def create_mmseqs_db(fasta, output_prefix):
     # Create mmseqs database of only unique gene sequences
     unique_ids = get_unique_sequences(output_prefix + '.all',
                                       table_output = output_prefix + '.unique.tsv',
-                                      createsubdb_output = output_prefix)
+                                      createsubdb_output = output_prefix,
+                                      threads=threads)
 
     # NOTE: commenting this out, because I think this pickling already happens in the call to get_unique_sequences() above
 #    pickle_clu(str(output_prefix) + '.unique.tsv')
@@ -1659,8 +1667,8 @@ def mmseqs_search(source_db, target_db, output, tmp_dir=None, threads=None, slee
                          target=target_db,
                          output=output,
                          threads=threads)
-        utils.time_print('Running command: {}'.format(cmd))
-        utils.run_cmd(cmd)
+#        utils.time_print('Running command: {}'.format(cmd))
+        utils.run_cmd(cmd, verbose=True)
         
         utils.tprint(f'Sleeping for {sleep_seconds} seconds to let the file system flush')
         import time ; time.sleep(sleep_seconds) # Sleep, to let files from command freshen up
@@ -1680,6 +1688,8 @@ def mmseqs_merge_search(source_db, target_db_dir, output, ident_list, threads=No
 
     for identity in ident_list:
         start_time = time.time()
+
+        print('THREADS*******', threads)
 
         utils.tprint(f"################ Running Identity {identity} ######################")
         if os.path.exists(target_db_pattern.format(identity=identity)):

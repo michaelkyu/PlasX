@@ -19,6 +19,7 @@ from plasx.fasta_utils import *
 from plasx.pd_utils import *
 from plasx.compress_utils import *
 
+
 def get_max_threads():
     return multiprocessing.cpu_count()
 

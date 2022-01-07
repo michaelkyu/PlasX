@@ -1,7 +1,7 @@
 import argparse
 import textwrap
 
-from plasx import constants
+from plasx import constants, compress_utils
 
 def setup(args):
     from plasx.mmseqs import download_pretrained_plasx_model
@@ -32,12 +32,16 @@ def predict(args):
 
 def search(args):
     from plasx.mmseqs import annotate_de_novo_families
+
+    compress_utils.set_threads(args.threads)
+
     annotate_de_novo_families(args.gene_calls,
                               output=args.output,
                               output_dir=args.tmp,
                               target_db=args.target_db,
                               overwrite= 2 if args.overwrite else 1,
-                              output_kws=dict(txt=True))
+                              output_kws=dict(txt=True),
+                              threads=args.threads)
 
 def fit(args):
     print(args)
