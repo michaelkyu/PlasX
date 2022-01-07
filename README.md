@@ -7,15 +7,16 @@ PlasX requires `python >=3.7`. We recommend installing PlasX in a new virtual en
 ```
 # Create virtual environment named "plasx" (you can change the name to whatever you like)
 conda create --name plasx
-# Install dependencies (this might take a few minutes for Anaconda to figure out the right package versions)
-conda install --name plasx -c anaconda -c conda-forge -c bioconda  numpy pandas scipy scikit-learn python-igraph numba python-blosc mmseqs2=10.6d92c
+# Install dependencies (this might take a few minutes for Anaconda to figure out the right package versions).
+# The flags `-c anaconda -c conda-forge -c bioconda --override-channels --strict-channel-priority` specifies where packages should be downloaded from.
+conda install --name plasx -y -c anaconda -c conda-forge -c bioconda --override-channels --strict-channel-priority  numpy pandas scipy scikit-learn numba python-blosc mmseqs2=10.6d92c
 ```
 
 Alternatively, create the environment and install dependencies in a single command
 
 ```
 # (this might take a few minutes for Anaconda to figure out the right package versions)
-conda create --name plasx -c anaconda -c conda-forge -c bioconda  numpy pandas scipy scikit-learn python-igraph numba python-blosc mmseqs2=10.6d92c
+conda create --name plasx -y -c anaconda -c conda-forge -c bioconda --override-channels --strict-channel-priority  numpy pandas scipy scikit-learn numba python-blosc mmseqs2=10.6d92c
 ```
 
 Then, activate the new environment
@@ -80,7 +81,7 @@ cd test
 # Input and output filename will start with this prefix
 PREFIX='test-contigs'
 
-# The number of CPU cores that will be used to annotate genes. We recommend you setting it to a high number, to speed up the processing of many contigs
+# The number of CPU cores that will be used to annotate genes. We recommend setting it to the number of CPUs available, to speed up the processing of many contigs
 THREADS=4
 ```
 
@@ -199,24 +200,26 @@ conda deactivate
 conda activate plasx
 ```
 
-### Download database of *de novo* families and the set of coefficients that define the PlasX model.
+### Download the PlasX model. This consists of a pretrained database of *de novo* families and a set of logistic regression coefficients.
 
 
 ```bash
-# ~5 min download on fast network
+# By default, the model will be downloaded to the location that PlasX was installed. Thus, you only need to run this command once for your PlasX installation.
+# - ~5 min download on fast network
 plasx setup \
     --de-novo-families 'https://zenodo.org/record/5819401/files/PlasX_mmseqs_profiles.tar.gz?download=1' \
     --coefficients 'https://zenodo.org/record/5819401/files/PlasX_coefficients_and_gene_enrichments.txt.gz?download=1'
 ```
 
-### Annotate genes using pretrained database of *de novo* gene families
+### Annotate genes using the database of *de novo* gene families
 
 
 ```bash
-# May take ~30 min
+# ~5 min. For faster processing, be sure to set THREADS to the number of CPU cores available.
 plasx search_de_novo_families \
     -g $PREFIX-gene-calls.txt \
     -o $PREFIX-de-novo-families.txt \
+    --threads $THREADS \
     --overwrite
 ```
 
