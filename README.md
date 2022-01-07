@@ -66,6 +66,8 @@ In this tutorial, we will identify plasmids using a PlasX model that was pretrai
 2. Annotate *de novo* gene families
 3. Use PlasX to classify contigs as plasmid or non-plasmid sequences, based on the annotations in step #1 and #2
 
+The `test` directory contains copies of the files that will be created by these steps. You can use these files to skip ahead in the tutorial or to check correctness
+
 ## Step 0. Preliminary setup of your command line environment
 
 
