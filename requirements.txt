@@ -2,6 +2,5 @@ numpy
 pandas
 scipy
 scikit-learn
-python-igraph
 numba
 blosc

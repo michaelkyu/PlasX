@@ -35,7 +35,6 @@ setup(
         'pandas',
         'scipy',
         'scikit-learn',
-        'igraph',
         'numba',
         'blosc'], 
     entry_points={

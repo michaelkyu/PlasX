@@ -73,7 +73,7 @@ have scores closer to 0.""")
     fit_parser.set_defaults(func=fit)
 
     ## Search parser
-    search_parser = subparsers.add_parser('search_de_novo_families', help='Annotates genes to de novo families')
+    search_parser = subparsers.add_parser('search_de_novo_families', help='Annotates genes to de novo families. Uses mmseqs2 for fast sequence alignment.')
     search_parser.set_defaults(func=search)
     required = search_parser.add_argument_group('required arguments')
     optional = search_parser.add_argument_group('optional arguments')
@@ -85,13 +85,13 @@ have scores closer to 0.""")
         help="""File to save predictions""")
     optional.add_argument(
         '-db', dest='target_db', default=None,
-        help="""Location of precomputed mmseqs profiles""")
+        help="""Location of precomputed mmseqs2 profiles. You only need to specify this if you downloaded the PlasX model to a custom location using the '-o' flag in `plasx setup`. Default: PlasX will search the default download location in its installation diretory.""")
     optional.add_argument(
-        '--threads', dest='threads', type=int, default=1,
-        help="""Number of threads to run mmseqs with""")
+        '-T', '--threads', dest='threads', type=int, default=1,
+        help="""Number of threads to run mmseqs2 with. Default: 1 thread.""")
     optional.add_argument(
         '--tmp', dest='tmp', default=None,
-        help="""Directory to save intermediate files, including ones created by mmseqs. Default: a temporary directory that is deleted upon termination""")
+        help="""Directory to save intermediate files, including ones created by mmseqs2. Default: a temporary directory that is deleted upon termination""")
     optional.add_argument(
         '--overwrite', dest='overwrite', action='store_true', default=False,
         help="""Overwrite files""")

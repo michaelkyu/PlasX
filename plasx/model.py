@@ -68,7 +68,7 @@ class PlasX_model:
 
         # Remove annotations that are not in the vocab
         C = C[utils.catin(C[annotation_column], self.features)].copy()
-        C[annotation_column].cat.set_categories(self.features, inplace=True)
+        C[annotation_column] = C[annotation_column].cat.set_categories(self.features)
 
         utils.tprint('Pivoting annotation table into a contig-by-gene feature matrix', verbose=verbose)
         X, rownames, colnames = utils.sparse_pivot(C, index=contig_column, columns=annotation_column, rettype='spmatrix')
@@ -101,7 +101,9 @@ class PlasX_model:
         # Set default names of contig/annotation-columns
         if contig_column is None:
             contig_column = 'contig'
+        annotation_column_was_none = False
         if annotation_column is None:
+            annotation_column_was_none = True
             annotation_column = 'accession'
 
         if gene_calls is not None:
@@ -120,10 +122,19 @@ class PlasX_model:
 
             return functions
                 
-        C = utils.read_table(annotations,
+        try:
+            C = utils.read_table(annotations,
                              cols=[contig_column, annotation_column],
                              verbose=verbose,
                              post_apply=map_gene_callers_id_to_contig)
+        except KeyError:
+            if annotation_column_was_none:
+                annotation_column = 'annotation'
+            C = utils.read_table(annotations,
+                     cols=[contig_column, annotation_column],
+                     verbose=verbose,
+                     post_apply=map_gene_callers_id_to_contig)
+
 
         # Process annotations table by string splitting '!!!'
         C = utils.df_str_split(C, '!!!', annotation_column)
