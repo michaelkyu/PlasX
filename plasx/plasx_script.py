@@ -41,7 +41,8 @@ def search(args):
                               target_db=args.target_db,
                               overwrite= 2 if args.overwrite else 1,
                               output_kws=dict(txt=True),
-                              threads=args.threads)
+                              threads=args.threads,
+                              splits=args.splits)
 
 def fit(args):
     print(args)
@@ -91,8 +92,11 @@ have scores closer to 0.""")
         '-db', dest='target_db', default=None,
         help="""Location of precomputed mmseqs2 profiles. You only need to specify this if you downloaded the PlasX model to a custom location using the '-o' flag in `plasx setup`. Default: PlasX will search the default download location in its installation diretory.""")
     optional.add_argument(
-        '-T', '--threads', dest='threads', type=int, default=1,
-        help="""Number of threads to run mmseqs2 with. Default: 1 thread.""")
+        '-T', '--threads', dest='threads', type=int, default=None,
+        help="""Number of threads to run mmseqs2 with. Default: The number of CPUs available on this machine.""")
+    optional.add_argument(
+        '-S', '--splits', dest='splits', type=int, default=1,
+        help="""This will split PlasX's set of de novo families into an equal number of chunks for searching, reducing the maximum RAM usage. Searching will fail if your machine has insufficient RAM, so you should consider increasing the number of splits. If you have only ~8Gb of RAM, then we recommend settings -S to 32. Setting -S to 0 will let mmseqs2 decide the number of splits automatically. Default: 1 split.""")
     optional.add_argument(
         '--tmp', dest='tmp', default=None,
         help="""Directory to save intermediate files, including ones created by mmseqs2. Default: a temporary directory that is deleted upon termination""")
@@ -131,5 +135,4 @@ def run(args=None):
     args.func(args)
 
 if __name__=='__main__':
-    utils.tprint('Starting PlasX')
     run()
