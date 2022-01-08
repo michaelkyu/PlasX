@@ -27,9 +27,9 @@ Finally, download PlasX (e.g. with `git clone`) and then install it with `pip`
 
 ```
 # Download the PlasX code
-git clone https://github.com/michaelkyu/plasx
-# Change into the downloaded directory, and then install using pip
-cd plasx
+git clone https://github.com/michaelkyu/PlasX.git
+# Change directory into the repository, and then install using pip
+cd PlasX
 pip install .
 ```
 
@@ -206,19 +206,23 @@ conda activate plasx
 # By default, the model will be downloaded to the location that PlasX was installed. Thus, you only need to run this command once for your PlasX installation.
 # - ~5 min download on fast network
 plasx setup \
-    --de-novo-families 'https://zenodo.org/record/5819401/files/PlasX_mmseqs_profiles.tar.gz?download=1' \
-    --coefficients 'https://zenodo.org/record/5819401/files/PlasX_coefficients_and_gene_enrichments.txt.gz?download=1'
+    --de-novo-families 'https://zenodo.org/record/5819401/files/PlasX_mmseqs_profiles.tar.gz' \
+    --coefficients 'https://zenodo.org/record/5819401/files/PlasX_coefficients_and_gene_enrichments.txt.gz'
 ```
 
 ### Annotate genes using the database of *de novo* gene families
 
 
 ```bash
-# ~5 min. For faster processing, be sure to set THREADS to the number of CPU cores available.
+# ~1 hr if THREADS=4. ~5 min if THREADS=128.
+# - For faster processing, set THREADS to the number of CPU cores available.
+# - This command requires a high amount of RAM (at least ~60Gb). If your machine has low RAM, then you need to set the `--splits` flag to a high number.
+#   This will split the de novo families into chunks, reducing the max RAM usage. E.g. if you have only ~8Gb, we recommend setting `--splits` to 32 or higher.
 plasx search_de_novo_families \
     -g $PREFIX-gene-calls.txt \
     -o $PREFIX-de-novo-families.txt \
     --threads $THREADS \
+    --splits 32 \
     --overwrite
 ```
 
