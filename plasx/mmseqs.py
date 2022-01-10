@@ -1664,15 +1664,13 @@ def mmseqs_search(source_db, target_db, output, tmp_dir=None, threads=None, spli
     # Update 12/13/21: Added qlen and tlen to the output, so that you don't need to read these from the header files
     cmd_list = [f"mmseqs search {source_db} {target_db} {output}.search {output}.search.tmp -a {splits} --threads {threads} 2>&1 | tee {output}.search.log 2>&1",
                 f"mmseqs convertalis {source_db} {target_db} {output}.search {output}.m8 --format-output query,target,pident,alnlen,mismatch,gapopen,qstart,qend,qlen,tstart,tend,tlen,evalue,bits"]
-
-    for i, cmd in enumerate(cmd_list):
-        utils.run_cmd(cmd, verbose=True)
-        
+    for cmd in cmd_list:
+        utils.run_cmd(cmd, verbose=True)    
         utils.tprint(f'Sleeping for {sleep_seconds} seconds to let the file system flush')
         time.sleep(sleep_seconds) # Sleep, to let files from command freshen up
 
-        if i==0 and not os.path.exists(f"{output}.m8"):
-            raise FileNotFoundError(f"The file {output}.m8 was supposed to be created, but it doesn't exist. This might be because the search using mmseqs2 ran out of system RAM. Consider setting the -S flag to reduce the maximum RAM usage. E.g., if you only have ~8Gb RAM, we recommend setting -S to 32 or higher.")
+    if not os.path.exists(f"{output}.m8"):
+        raise FileNotFoundError(f"The file {output}.m8 was supposed to be created, but it doesn't exist. This might be because the search using mmseqs2 ran out of system RAM. Consider setting the -S flag to reduce the maximum RAM usage. E.g., if you only have ~8Gb RAM, we recommend setting -S to 32 or higher.")
 
     names = ['qId', 'tId',
              'seqIdentity', 'alnLen', 'mismatchCnt', 'gapOpenCnt',
@@ -1905,7 +1903,7 @@ def annotate_de_novo_families(gene_calls, target_db=None, output_dir=None, ident
         mmseqs_dir = output_dir / 'mmseqs'
         os.makedirs(mmseqs_dir, exist_ok=True)
         mmseqs_source_db = mmseqs_dir / 'source_db'
-        gene_calls_out = output_dir / f'gene_calls.pkl.blp'
+        gene_calls_out = output_dir / f'gene_calls.blp'
         hits_filtered_out = output_dir / 'hits_filtered.pkl.blp'
 
         # Write amino acid sequences to a fasta file
