@@ -172,7 +172,7 @@ def run_cmd(cmd, tee=True, shell=True, env=None, wait=True, debug=False, verbose
         cmd = utils.make_cmd(cmd, env=env)
 
     if debug or verbose:
-        print('Running command:')
+        tprint('Running command:')
         print(cmd)
         if debug:
             return

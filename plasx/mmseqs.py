@@ -1662,15 +1662,33 @@ def mmseqs_search(source_db, target_db, output, tmp_dir=None, threads=None, spli
         splits = f"--split {splits} --split-mode 0"
     
     # Update 12/13/21: Added qlen and tlen to the output, so that you don't need to read these from the header files
-    cmd_list = [f"mmseqs search {source_db} {target_db} {output}.search {output}.search.tmp -a {splits} --threads {threads} 2>&1 | tee {output}.search.log 2>&1",
-                f"mmseqs convertalis {source_db} {target_db} {output}.search {output}.m8 --format-output query,target,pident,alnlen,mismatch,gapopen,qstart,qend,qlen,tstart,tend,tlen,evalue,bits"]
-    for cmd in cmd_list:
-        utils.run_cmd(cmd, verbose=True)    
-        utils.tprint(f'Sleeping for {sleep_seconds} seconds to let the file system flush')
-        time.sleep(sleep_seconds) # Sleep, to let files from command freshen up
+    cmd = f"mmseqs search {source_db} {target_db} {output}.search {output}.search.tmp -a {splits} --threads {threads} 2>&1 | tee {output}.search.log 2>&1"
+    utils.run_cmd(cmd, verbose=True)    
+    utils.tprint(f'Sleeping for {sleep_seconds} seconds to let the file system flush')
+    time.sleep(sleep_seconds) # Sleep, to let files from command freshen up
 
-    if not os.path.exists(f"{output}.m8"):
-        raise FileNotFoundError(f"The file {output}.m8 was supposed to be created, but it doesn't exist. This might be because the search using mmseqs2 ran out of system RAM. Consider setting the -S flag to reduce the maximum RAM usage. E.g., if you only have ~8Gb RAM, we recommend setting -S to 32 or higher.")
+    cmd = f"mmseqs convertalis {source_db} {target_db} {output}.search {output}.m8 --format-output query,target,pident,alnlen,mismatch,gapopen,qstart,qend,qlen,tstart,tend,tlen,evalue,bits"
+    try:
+        utils.run_cmd(cmd, verbose=True)
+    except Exception as e:
+        # Test if the error occurred because of missing file
+        if not os.path.exists(f"{output}.m8"):
+            raise FileNotFoundError(f"The file {output}.m8 was supposed to be created, but it doesn't exist. This might be because the search using mmseqs2 ran out of system RAM. Consider setting the -S flag to reduce the maximum RAM usage. E.g., if you only have ~8Gb RAM, we recommend setting -S to 32 or higher.")
+        raise e
+    utils.tprint(f'Sleeping for {sleep_seconds} seconds to let the file system flush')
+    time.sleep(sleep_seconds) # Sleep, to let files from command freshen up
+
+        
+    # cmd_list = [f"mmseqs search {source_db} {target_db} {output}.search {output}.search.tmp -a {splits} --threads {threads} 2>&1 | tee {output}.search.log 2>&1",
+    #             f"mmseqs convertalis {source_db} {target_db} {output}.search {output}.m8 --format-output query,target,pident,alnlen,mismatch,gapopen,qstart,qend,qlen,tstart,tend,tlen,evalue,bits"]
+    # for cmd in cmd_list:
+
+    #     utils.run_cmd(cmd, verbose=True)    
+    #     utils.tprint(f'Sleeping for {sleep_seconds} seconds to let the file system flush')
+    #     time.sleep(sleep_seconds) # Sleep, to let files from command freshen up
+
+    # if not os.path.exists(f"{output}.m8"):
+    #     raise FileNotFoundError(f"The file {output}.m8 was supposed to be created, but it doesn't exist. This might be because the search using mmseqs2 ran out of system RAM. Consider setting the -S flag to reduce the maximum RAM usage. E.g., if you only have ~8Gb RAM, we recommend setting -S to 32 or higher.")
 
     names = ['qId', 'tId',
              'seqIdentity', 'alnLen', 'mismatchCnt', 'gapOpenCnt',
