@@ -235,7 +235,8 @@ def get_fasta_dict(fasta, input_type=None, input_fmt='fasta', subset=None, verbo
     else:
         assert not isinstance(subset, str), Exception('`subset` cannot be a string.') 
         
-        parse_with_SeqIO = True
+        #parse_with_SeqIO = True
+        parse = True
 
         if input_type=='pickle':
             if verbose: print('Reading {}'.format(fasta))
@@ -261,13 +262,16 @@ def get_fasta_dict(fasta, input_type=None, input_fmt='fasta', subset=None, verbo
         elif input_type=='filename':
             if verbose: print('Reading {}'.format(fasta))
         elif input_type=='dict':            
-            parse_with_SeqIO = False
+            # parse_with_SeqIO = False
+            parse = False
         else:
             raise Exception()
 
-        if parse_with_SeqIO:
-            from Bio import SeqIO
-            fasta_list = ((record.id, str(record.seq)) for record in SeqIO.parse(fasta, input_fmt))
+        # if parse_with_SeqIO:
+        #     from Bio import SeqIO
+        #     fasta_list = ((record.id, str(record.seq)) for record in SeqIO.parse(fasta, input_fmt))
+        if parse:
+            fasta_list = parse_fasta_file(fasta).items()
         else:
             fasta_list = fasta.items()
 
@@ -286,7 +290,33 @@ def get_fasta_dict(fasta, input_type=None, input_fmt='fasta', subset=None, verbo
 
     return fasta_dict        
 
+def parse_fasta_file(fasta):
+    """Parses a fasta file into a dictionary"""
+    fasta_dict = {}
 
+    def add_seq(key, seq):
+        fasta_dict[key] = ''.join([x.strip() for x in seq])
+
+    with open(fasta, 'rt') as f:
+        is_first_seq = True
+        for line in f.readlines():
+            if len(line)==0:
+                continue
+            elif line.startswith('>'):
+                if not is_first_seq:
+                    # Add previous sequence
+                    add_seq(key, seq)
+
+                # Start of a new sequence
+                is_first_seq = False
+                key = line[1:].strip()
+                seq = []
+            else:
+                seq.append(line)
+                
+        add_seq(key, seq)
+
+    return fasta_dict
 
 def concat_fasta_files(input_list, output, compress='infer', verbose=True):
     """
