@@ -38,6 +38,19 @@ whitespace (default: '\n') in every column of a dataframe"""
 
     return df
 
+def display(df):
+    """Attempt to print the contents of a pandas DataFrame using
+    IPython's display() function, if installed. Otherwise, use the
+    standard print() function.
+
+    """
+
+    try:
+        from IPython.display import display
+        display(df)
+    except ModuleNotFoundError as e:
+        print(df)
+    
 def pretty_print(df,
                  newlines=True,
                  col_newlines=True,
@@ -443,3 +456,4 @@ def subset_dict(d, keys):
     """Return subset of dictionary"""
 
     return {k : d[k] for k in keys}
+
