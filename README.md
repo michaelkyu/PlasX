@@ -1,8 +1,10 @@
 PlasX is a machine learning classifier for identifying plasmid sequences based on genetic architecture.
 
+This README includes a tutorial for predicting plasmids from any input set of contigs. It also includes instructions for reproducing the 226,194 predicted plasmid contigs from our study "The Genetic and Ecological Landscape of Plasmids in the Human Gut" by Michael Yu, Emily Fogarty, A. Murat Eren.
+
 # Installation
 
-PlasX requires `python >=3.7`. We recommend installing PlasX in a new virtual environment using Anaconda, to make installing dependencies easier.
+PlasX requires `python >=3.7`. We recommend installing PlasX in a new virtual environment using Anaconda, to make installing dependencies easier. **PlasX requires Linux and at least 8Gb of system RAM. In the future, we will provide support for running PlasX on Mac OS and Windows.**
 
 ```
 # Create virtual environment named "plasx" (you can change the name to whatever you like)
@@ -72,8 +74,9 @@ The `test` directory contains copies of the files that will be created by these 
 
 
 ```bash
-# Change into the directory where PlasX was downloaded (e.g. where you ran `git clone`).
+# Change into the directory where PlasX was downloaded (e.g. where `git clone` downloaded PlasX to).
 cd /path/to/PlasX
+
 # Change into the `test` subdirectory that contains test-contigs.fa
 cd test
 
@@ -199,7 +202,7 @@ conda deactivate
 conda activate plasx
 ```
 
-### Download the PlasX model. This consists of a pretrained database of *de novo* families and a set of logistic regression coefficients.
+### Download a pretrained PlasX machine learning model. This consists of a pretrained database of *de novo* families and a set of logistic regression coefficients.
 
 
 ```bash
@@ -211,6 +214,8 @@ plasx setup \
 ```
 
 ### Annotate genes using the database of *de novo* gene families
+
+**Note that we have only tested the next command on Linux, and it might not run correctly on Mac OS and Windows machines. Most of PlasX's code is Python-based and should be capable of running on almost any operating system. However, this specific command depends on non-Python code from the [mmseqs2 software package, version 10.6d92c](https://github.com/soedinglab/MMseqs2), which may need to be installed and configured differently on non-Linux systems. In the future, we will provide support for running PlasX on Mac OS and Windows.**
 
 
 ```bash
@@ -279,17 +284,17 @@ head $PREFIX-scores.txt
 
 # Reproduce plasmid predictions from the study "The Genetic and Ecological Landscape of Plasmids in the Human Gut" by Michael Yu, Emily Fogarty, A. Murat Eren.
 
-In this study, we predicted 226,194 plasmid contigs. The PlasX scores of these plasmids can be downloaded from https://zenodo.org/record/5819401/files/predicted_plasmids_summary.txt.gz.
+In this study, we predicted 226,194 plasmid contigs. You can download the PlasX scores of these plasmids at https://zenodo.org/record/5819401/files/predicted_plasmids_summary.txt.gz.
 
 ```bash
 wget https://zenodo.org/record/5819401/files/predicted_plasmids_summary.txt.gz
 gunzip predicted_plasmids_summary.txt.gz
 ```
 
-You can recalculate these scores, by running PlasX on precomputed gene annotations at https://zenodo.org/record/5732447/files/predicted_plasmids_gene_annotations.txt.gz.
+You can reproduce these scores by running PlasX on precomputed gene annotations at https://zenodo.org/record/5732447/files/predicted_plasmids_gene_annotations.txt.gz.
 
 ```bash
-# Download and extract gene annotations of predicted plasmids
+# Download and extract precomputed gene annotations of predicted plasmids
 wget https://zenodo.org/record/5732447/files/predicted_plasmids_gene_annotations.txt.gz
 gunzip predicted_plasmids_gene_annotations.txt.gz
 ```
@@ -321,21 +326,16 @@ head predicted_plasmids_scores.txt
     AST0002_000000001776	0.9726152909151958
 
 
-
-You can also calculate the PlasX scores for all ~36,000,000 metagenomic contigs in our study (the predicted plasmids is a small subset of these contigs). Precomputed gene annotations of all contigs are at https://zenodo.org/record/5731658/files/metagenomes_gene_annotations.tar.gz. You can also recompute these gene annotations using the steps in the above tutorial. Fasta files of all contigs are at https://zenodo.org/record/5730607/files/metagenomes_contigs.tar.gz.
-
-**NOTE: these are very large tar archives that will take hours to decompress and extract.**
-
+You can also reproduce the PlasX scores for all ~36,000,000 metagenomic contigs in our study (the predicted plasmids is a small subset of these contigs). You can do this from scratch by downloading the fasta files of all contigs at https://zenodo.org/record/5730607/files/metagenomes_contigs.tar.gz and then adapting the Tutorial with the appropriate file names. However, note that annotating genes will take a long time (~1 day using 256 CPU cores). To make things faster, you can skip the annotation step by downloading precomputed annotations at https://zenodo.org/record/5731658/files/metagenomes_gene_annotations.tar.gz, and then directly proceed to calculating PlasX scores.
 
 ```bash
-# Download and extract gene annotations of all metagenomic contigs. NOTE: this will take hours.
+# Download and extract gene annotations of all metagenomic contigs. NOTE: this is a very large file that will take a few hours to download and extract.
 wget https://zenodo.org/record/5731658/files/metagenomes_gene_annotations.tar.gz
 tar -zxf metagenomes_gene_annotations.tar.gz
 ```
 
-
 ```bash
-# Run PlasX to calculate scores for all contigs from metagenome AST0002 (this command can be run for any other metagenome)
+# Run PlasX to calculate scores for all contigs from metagenome AST0002 (this command can be modified for any other metagenome)
 plasx predict \
     -a AST0002_gene_annotations.txt \
     -o AST0002-scores.txt \
