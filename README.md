@@ -1,6 +1,6 @@
 PlasX is a machine learning classifier for identifying plasmid sequences based on genetic architecture.
 
-This README includes a tutorial for predicting plasmids from any input set of contigs. It also includes instructions for reproducing the 226,194 predicted plasmid contigs from our study "The Genetic and Ecological Landscape of Plasmids in the Human Gut" by Michael Yu, Emily Fogarty, A. Murat Eren.
+This README includes a tutorial for predicting plasmids from any input set of contigs. It also includes instructions for reproducing the 226,194 predicted plasmid contigs from our study ["The Genetic and Ecological Landscape of Plasmids in the Human Gut" by Michael Yu, Emily Fogarty, A. Murat Eren](https://www.biorxiv.org/content/10.1101/2020.11.01.361691v2).
 
 # Installation
 
@@ -282,7 +282,7 @@ head $PREFIX-scores.txt
     AST0002_000000008287	0.9848824181163179
 
 
-# Reproduce plasmid predictions from the study "The Genetic and Ecological Landscape of Plasmids in the Human Gut" by Michael Yu, Emily Fogarty, A. Murat Eren.
+# Reproduce plasmid predictions from the study ["The Genetic and Ecological Landscape of Plasmids in the Human Gut" by Michael Yu, Emily Fogarty, A. Murat Eren](https://www.biorxiv.org/content/10.1101/2020.11.01.361691v2).
 
 In this study, we predicted 226,194 plasmid contigs. You can download the PlasX scores of these plasmids at https://zenodo.org/record/5819401/files/predicted_plasmids_summary.txt.gz.
 
