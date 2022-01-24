@@ -401,30 +401,43 @@ def TemporaryDirectory(name=None, post_delete=None, path=True, verbose=False,
     string)
 
     overwrite : If False, then check if file already exists, and raise Exception if so. Default: True.
-
-    pre_delete : If True, then first delete the directory if it already exists. Default: False
+  
+    post_delete : If True, then delete the directory upon exiting this context. If False, don't delete. If not specified, then set to True if `name` is None, otherwise False.
     """
 
     try:
         if name is None:
-            delete = True
+            if post_delete is None:
+                post_delete = True
             name = tempfile.mkdtemp()
             if verbose:
                 print('Created temporary directory:', name)
         else:
             check_overwrite(name, overwrite, overwrite_err_msg)
-            
             os.makedirs(name, exist_ok=True)
-            delete = False
-            
+            if post_delete is None:
+                post_delete = False
+
+        if verbose:
+            print('Using temporary directory:', name, end='')
+            if post_delete:
+                print(' (This will be deleted after execution)')
+            else:
+                print(' (This will NOT be deleted after execution)')
+                
         if path:
             name = Path(name)
 
         yield name
 
     finally:
-        if (post_delete is True or delete) and (name is not None):
+        if post_delete:
+            if verbose:
+                print('Deleting temporary directory:', name)
             shutil.rmtree(name)
+        else:
+            if verbose:
+                print(f'Temporary directory {name} was NOT deleted.')
 
 def check_overwrite(path, overwrite=None, overwrite_err_msg=None):
     """
