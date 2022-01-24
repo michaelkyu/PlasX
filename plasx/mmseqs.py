@@ -1649,7 +1649,12 @@ def create_mmseqs_db(fasta, output_prefix, threads=None):
     print('Unique gene sequences:', len(unique_ids))
 
 
-def mmseqs_search(source_db, target_db, output, tmp_dir=None, threads=None, splits=None, sleep_seconds=300):
+def mmseqs_search(source_db, target_db, output,
+                  tmp_dir=None,
+                  threads=None,
+                  splits=None,
+                  sleep_seconds=300,
+                  clean_mmseqs_tmp=True):
     """
     Do sequence-to-sequence search with mmseqs
     """
@@ -1660,35 +1665,32 @@ def mmseqs_search(source_db, target_db, output, tmp_dir=None, threads=None, spli
     if splits is not None and splits != 0:
         assert isinstance(splits, int)
         splits = f"--split {splits} --split-mode 0"
-    
-    # Update 12/13/21: Added qlen and tlen to the output, so that you don't need to read these from the header files
-    cmd = f"mmseqs search {source_db} {target_db} {output}.search {output}.search.tmp -a {splits} --threads {threads} 2>&1 | tee {output}.search.log 2>&1"
-    utils.run_cmd(cmd, verbose=True)    
-    utils.tprint(f'Sleeping for {sleep_seconds} seconds to let the file system flush')
-    time.sleep(sleep_seconds) # Sleep, to let files from command freshen up
 
-    cmd = f"mmseqs convertalis {source_db} {target_db} {output}.search {output}.m8 --format-output query,target,pident,alnlen,mismatch,gapopen,qstart,qend,qlen,tstart,tend,tlen,evalue,bits"
     try:
-        utils.run_cmd(cmd, verbose=True)
-    except Exception as e:
-        # Test if the error occurred because of missing file
-        if not os.path.exists(f"{output}.m8"):
-            raise FileNotFoundError(f"The file {output}.m8 was supposed to be created, but it doesn't exist. This might be because the search using mmseqs2 ran out of system RAM. Consider setting the -S flag to reduce the maximum RAM usage. E.g., if you only have ~8Gb RAM, we recommend setting -S to 32 or higher.")
-        raise e
-    utils.tprint(f'Sleeping for {sleep_seconds} seconds to let the file system flush')
-    time.sleep(sleep_seconds) # Sleep, to let files from command freshen up
+        # Update 12/13/21: Added qlen and tlen to the output, so that you don't need to read these from the header files
+        cmd = f"mmseqs search {source_db} {target_db} {output}.search {output}.search.tmp -a {splits} --threads {threads} 2>&1 | tee {output}.search.log 2>&1"
+        utils.run_cmd(cmd, verbose=True)    
+        utils.tprint(f'Sleeping for {sleep_seconds} seconds to let the file system flush')
+        time.sleep(sleep_seconds) # Sleep, to let files from command freshen up
 
-        
-    # cmd_list = [f"mmseqs search {source_db} {target_db} {output}.search {output}.search.tmp -a {splits} --threads {threads} 2>&1 | tee {output}.search.log 2>&1",
-    #             f"mmseqs convertalis {source_db} {target_db} {output}.search {output}.m8 --format-output query,target,pident,alnlen,mismatch,gapopen,qstart,qend,qlen,tstart,tend,tlen,evalue,bits"]
-    # for cmd in cmd_list:
+        cmd = f"mmseqs convertalis {source_db} {target_db} {output}.search {output}.m8 --format-output query,target,pident,alnlen,mismatch,gapopen,qstart,qend,qlen,tstart,tend,tlen,evalue,bits"
+        try:
+            utils.run_cmd(cmd, verbose=True)
+        except Exception as e:
+            # Test if the error occurred because of missing file
+            if not os.path.exists(f"{output}.m8"):
+                raise FileNotFoundError(f"The file {output}.m8 was supposed to be created, but it doesn't exist. This might be because the search using mmseqs2 ran out of system RAM. Consider setting the -S flag to reduce the maximum RAM usage. E.g., if you only have ~8Gb RAM, we recommend setting -S to 32 or higher.")
+            raise e
+        utils.tprint(f'Sleeping for {sleep_seconds} seconds to let the file system flush')
+        time.sleep(sleep_seconds) # Sleep, to let files from command freshen up
 
-    #     utils.run_cmd(cmd, verbose=True)    
-    #     utils.tprint(f'Sleeping for {sleep_seconds} seconds to let the file system flush')
-    #     time.sleep(sleep_seconds) # Sleep, to let files from command freshen up
-
-    # if not os.path.exists(f"{output}.m8"):
-    #     raise FileNotFoundError(f"The file {output}.m8 was supposed to be created, but it doesn't exist. This might be because the search using mmseqs2 ran out of system RAM. Consider setting the -S flag to reduce the maximum RAM usage. E.g., if you only have ~8Gb RAM, we recommend setting -S to 32 or higher.")
+    finally:
+        # Remove temporary subdirectory created by mmseqs
+        if clean_mmseqs_tmp:
+            if os.path.exists(f'{output}.search.tmp'):
+                shutil.rmtree(f'{output}.search.tmp')
+            for file in glob.glob(f'{output}.search*'):
+                os.path.remove(file)
 
     names = ['qId', 'tId',
              'seqIdentity', 'alnLen', 'mismatchCnt', 'gapOpenCnt',
@@ -1696,7 +1698,7 @@ def mmseqs_search(source_db, target_db, output, tmp_dir=None, threads=None, spli
     _ = pickle_alignm8(output + '.m8', low_memory=True, names=names)
 
 def mmseqs_merge_search(source_db, target_db_dir, output, ident_list, threads=None, splits=None):
-    """Runs mmseqs_search on a set of nested-merged clusters, across multiple identities"""
+    """Runs mmseqs_search on multiple sets of clusters, where each set was created at a different identity"""
 
     target_db_pattern = os.path.join(target_db_dir, 'clu{identity}.profile')
 
