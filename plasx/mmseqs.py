@@ -324,7 +324,7 @@ def createsubdb(subset,
                   'unintuitive. If you are unsure, look into the code for this function'.format(db_prefix))
         except:
             _, subset_file = tempfile.mkstemp()
-#            delete = True
+            delete = True
             with open(subset_file, 'wt') as f:
                 f.write('\n'.join(map(str, subset)) + '\n')
         
@@ -334,21 +334,14 @@ def createsubdb(subset,
         output_fa = str(output_prefix) + '_fa'
 
         cmd = ' '.join([mmseqs_cmd, 'createsubdb', subset_file, db_prefix, output])
-        print(cmd)
-        utils.run_cmd(cmd, shell=True, tee=True)
-#        subprocess.run(cmd, shell=True, check=True)
-
+        utils.run_cmd(cmd, shell=True, tee=True, verbose=True)
 
         cmd = ' '.join([mmseqs_cmd, 'createsubdb', subset_file, db_prefix + '_h', output_h])
-        print(cmd)
-        utils.run_cmd(cmd, shell=True, tee=True)
-#        subprocess.run(cmd, shell=True, check=True)
+        utils.run_cmd(cmd, shell=True, tee=True, verbose=True)
 
         if convert2fasta:
             cmd = ' '.join([mmseqs_cmd, 'convert2fasta', output, output_fa])
-            print(cmd)
-            utils.run_cmd(cmd, shell=True, tee=True)
-#            subprocess.run(cmd, shell=True, check=True)
+            utils.run_cmd(cmd, shell=True, tee=True, verbose=True)
 
     finally:
         if delete:
@@ -478,6 +471,7 @@ def prep_mmseqs_fasta(input_fa, output_prefix, header_filter=None):
 
     """
     output_prefix = str(output_prefix)
+
 
     if input_fa is not None:        
         df = utils.index_fasta_headers(input_fa,
@@ -941,6 +935,8 @@ def get_unique_sequences(db,
         threads = utils.get_max_threads()
 
     with tempfile.TemporaryDirectory() as tempdir:
+        print('Temp unique_sequences:', tempdir)
+
         clusthash = os.path.join(tempdir, 'clusthash')
         clu = os.path.join(tempdir, 'clu')
         if table_output is None:
@@ -1649,7 +1645,12 @@ def create_mmseqs_db(fasta, output_prefix, threads=None):
     print('Unique gene sequences:', len(unique_ids))
 
 
-def mmseqs_search(source_db, target_db, output, tmp_dir=None, threads=None, splits=None, sleep_seconds=300):
+def mmseqs_search(source_db, target_db, output,
+                  tmp_dir=None,
+                  threads=None,
+                  splits=None,
+                  sleep_seconds=300,
+                  clean_tmp=None):
     """
     Do sequence-to-sequence search with mmseqs
     """
@@ -1660,43 +1661,42 @@ def mmseqs_search(source_db, target_db, output, tmp_dir=None, threads=None, spli
     if splits is not None and splits != 0:
         assert isinstance(splits, int)
         splits = f"--split {splits} --split-mode 0"
-    
-    # Update 12/13/21: Added qlen and tlen to the output, so that you don't need to read these from the header files
-    cmd = f"mmseqs search {source_db} {target_db} {output}.search {output}.search.tmp -a {splits} --threads {threads} 2>&1 | tee {output}.search.log 2>&1"
-    utils.run_cmd(cmd, verbose=True)    
-    utils.tprint(f'Sleeping for {sleep_seconds} seconds to let the file system flush')
-    time.sleep(sleep_seconds) # Sleep, to let files from command freshen up
 
-    cmd = f"mmseqs convertalis {source_db} {target_db} {output}.search {output}.m8 --format-output query,target,pident,alnlen,mismatch,gapopen,qstart,qend,qlen,tstart,tend,tlen,evalue,bits"
     try:
-        utils.run_cmd(cmd, verbose=True)
-    except Exception as e:
-        # Test if the error occurred because of missing file
-        if not os.path.exists(f"{output}.m8"):
-            raise FileNotFoundError(f"The file {output}.m8 was supposed to be created, but it doesn't exist. This might be because the search using mmseqs2 ran out of system RAM. Consider setting the -S flag to reduce the maximum RAM usage. E.g., if you only have ~8Gb RAM, we recommend setting -S to 32 or higher.")
-        raise e
-    utils.tprint(f'Sleeping for {sleep_seconds} seconds to let the file system flush')
-    time.sleep(sleep_seconds) # Sleep, to let files from command freshen up
+        # Update 12/13/21: Added qlen and tlen to the output, so that you don't need to read these from the header files
+        cmd = f"mmseqs search {source_db} {target_db} {output}.search {output}.search.tmp -a {splits} --threads {threads} 2>&1 | tee {output}.search.log 2>&1"
+        utils.run_cmd(cmd, verbose=True)    
+        utils.tprint(f'Sleeping for {sleep_seconds} seconds to let the file system flush')
+        time.sleep(sleep_seconds) # Sleep, to let files from command freshen up
 
-        
-    # cmd_list = [f"mmseqs search {source_db} {target_db} {output}.search {output}.search.tmp -a {splits} --threads {threads} 2>&1 | tee {output}.search.log 2>&1",
-    #             f"mmseqs convertalis {source_db} {target_db} {output}.search {output}.m8 --format-output query,target,pident,alnlen,mismatch,gapopen,qstart,qend,qlen,tstart,tend,tlen,evalue,bits"]
-    # for cmd in cmd_list:
+        cmd = f"mmseqs convertalis {source_db} {target_db} {output}.search {output}.m8 --format-output query,target,pident,alnlen,mismatch,gapopen,qstart,qend,qlen,tstart,tend,tlen,evalue,bits"
+        try:
+            utils.run_cmd(cmd, verbose=True)
+        except Exception as e:
+            # Test if the error occurred because of missing file
+            if not os.path.exists(f"{output}.m8"):
+                raise FileNotFoundError(f"The file {output}.m8 was supposed to be created, but it doesn't exist. This might be because the search using mmseqs2 ran out of system RAM. Consider setting the -S flag to reduce the maximum RAM usage. E.g., if you only have ~8Gb RAM, we recommend setting -S to 32 or higher.")
+            raise e
+        utils.tprint(f'Sleeping for {sleep_seconds} seconds to let the file system flush')
+        time.sleep(sleep_seconds) # Sleep, to let files from command freshen up
 
-    #     utils.run_cmd(cmd, verbose=True)    
-    #     utils.tprint(f'Sleeping for {sleep_seconds} seconds to let the file system flush')
-    #     time.sleep(sleep_seconds) # Sleep, to let files from command freshen up
+        names = ['qId', 'tId',
+                 'seqIdentity', 'alnLen', 'mismatchCnt', 'gapOpenCnt',
+                 'qStart', 'qEnd', 'qlen', 'tStart', 'tEnd', 'tlen', 'eVal', 'bitScore']
+        _ = pickle_alignm8(output + '.m8', low_memory=True, names=names)
 
-    # if not os.path.exists(f"{output}.m8"):
-    #     raise FileNotFoundError(f"The file {output}.m8 was supposed to be created, but it doesn't exist. This might be because the search using mmseqs2 ran out of system RAM. Consider setting the -S flag to reduce the maximum RAM usage. E.g., if you only have ~8Gb RAM, we recommend setting -S to 32 or higher.")
+    finally:
+        # Remove temporary files created by mmseqs. Only the *.m8.pkl.blp file is kept.
+        if clean_tmp:
+            if os.path.exists(f'{output}.search.tmp'):
+                shutil.rmtree(f'{output}.search.tmp')
+            if os.path.exists(f'{output}.m8'):
+                os.remove(f'{output}.m8')
+            for file in glob.glob(f'{output}.search*'):
+                os.remove(file)
 
-    names = ['qId', 'tId',
-             'seqIdentity', 'alnLen', 'mismatchCnt', 'gapOpenCnt',
-             'qStart', 'qEnd', 'qlen', 'tStart', 'tEnd', 'tlen', 'eVal', 'bitScore']
-    _ = pickle_alignm8(output + '.m8', low_memory=True, names=names)
-
-def mmseqs_merge_search(source_db, target_db_dir, output, ident_list, threads=None, splits=None):
-    """Runs mmseqs_search on a set of nested-merged clusters, across multiple identities"""
+def mmseqs_merge_search(source_db, target_db_dir, output, ident_list, threads=None, splits=None, clean_tmp=None):
+    """Runs mmseqs_search on multiple sets of clusters, where each set was created at a different identity"""
 
     target_db_pattern = os.path.join(target_db_dir, 'clu{identity}.profile')
 
@@ -1715,7 +1715,8 @@ def mmseqs_merge_search(source_db, target_db_dir, output, ident_list, threads=No
                           output_pattern.format(identity=identity),
                           threads=threads,
                           splits=splits,
-                          sleep_seconds=5)
+                          sleep_seconds=5,
+                          clean_tmp=clean_tmp)
         else:
             utils.tprint(f"################ SKIPPING Identity {identity} (file doesn't exist probably it had no clusters after merging clusters ######################")
 
@@ -1888,8 +1889,16 @@ def download_pretrained_plasx_model(ver=None, data_dir=None, mmseqs_profiles_url
             f.extractall(out_path)
 
 
-def annotate_de_novo_families(gene_calls, target_db=None, output_dir=None, ident_list=None, 
-                              threads=None, splits=None, output=None, output_kws=None, overwrite=None):
+def annotate_de_novo_families(gene_calls,
+                              target_db=None,
+                              output_dir=None,
+                              ident_list=None, 
+                              threads=None,
+                              splits=None,
+                              output=None,
+                              output_kws=None,
+                              overwrite=None,
+                              clean_tmp=None):
     """Takes in a table of amino acid sequences and searches them against
     a target mmseqs database of gene clusters
 
@@ -1915,7 +1924,7 @@ def annotate_de_novo_families(gene_calls, target_db=None, output_dir=None, ident
     target_db_dir = get_target_db(target_db) 
 
     # Create temporary directory, if one is not specified
-    with utils.TemporaryDirectory(name=output_dir, verbose=True, overwrite=overwrite) as output_dir:
+    with utils.TemporaryDirectory(name=output_dir, verbose=True, overwrite=overwrite, post_delete=clean_tmp) as output_dir:
 
         # Setup output paths
         mmseqs_dir = output_dir / 'mmseqs'
@@ -1930,8 +1939,10 @@ def annotate_de_novo_families(gene_calls, target_db=None, output_dir=None, ident
         # Create mmseqs database from fasta file
         create_mmseqs_db(gene_calls_out, mmseqs_source_db)
 
+#        0 / asdf
+
         # Search sequences against target databases of gene clusters
-        mmseqs_merge_search(mmseqs_source_db, target_db_dir, mmseqs_dir, ident_list, threads=threads, splits=splits)
+        mmseqs_merge_search(mmseqs_source_db, target_db_dir, mmseqs_dir, ident_list, threads=threads, splits=splits, clean_tmp=clean_tmp)
 
         # Process search - retain only hits with >80% query AND target coverage, and with sufficient identity
         hits = process_mmseqs_merge_search(mmseqs_source_db, target_db_dir, mmseqs_dir, ident_list,

@@ -42,9 +42,11 @@ def search(args):
                               overwrite= 2 if args.overwrite else 1,
                               output_kws=dict(txt=True),
                               threads=args.threads,
-                              splits=args.splits)
+                              splits=args.splits,
+                              clean_tmp=not args.save_tmp)
 
 def fit(args):
+    raise Exception("Not Implemented")
     print(args)
 
 def get_parser():   
@@ -78,7 +80,7 @@ have scores closer to 0.""")
     fit_parser.set_defaults(func=fit)
 
     ## Search parser
-    search_parser = subparsers.add_parser('search_de_novo_families', help='Annotates genes to de novo families. Uses mmseqs2 for fast sequence alignment.')
+    search_parser = subparsers.add_parser('search_de_novo_families', help='Annotates genes to de novo families. Uses MMseqs2 for fast sequence alignment.')
     search_parser.set_defaults(func=search)
     required = search_parser.add_argument_group('required arguments')
     optional = search_parser.add_argument_group('optional arguments')
@@ -90,16 +92,19 @@ have scores closer to 0.""")
         help="""File to save predictions""")
     optional.add_argument(
         '-db', dest='target_db', default=None,
-        help="""Location of precomputed mmseqs2 profiles. You only need to specify this if you downloaded the PlasX model to a custom location using the '-o' flag in `plasx setup`. Default: PlasX will search the default download location in its installation diretory.""")
+        help="""Location of precomputed MMseqs2 profiles. You only need to specify this if you downloaded the PlasX model to a custom location using the '-o' flag in `plasx setup`. Default: PlasX will search the default download location in its installation diretory.""")
     optional.add_argument(
         '-T', '--threads', dest='threads', type=int, default=None,
-        help="""Number of threads to run mmseqs2 with. Default: The number of CPUs available on this machine.""")
+        help="""Number of threads to run MMseqs2 with. Default: The number of CPUs available on this machine.""")
     optional.add_argument(
         '-S', '--splits', dest='splits', type=int, default=1,
-        help="""This will split PlasX's set of de novo families into an equal number of chunks for searching, reducing the maximum RAM usage. Searching will fail if your machine has insufficient RAM, so you should consider increasing the number of splits. If you have only ~8Gb of RAM, then we recommend settings -S to 32. Setting -S to 0 will let mmseqs2 decide the number of splits automatically. Default: 1 split.""")
+        help="""This will split PlasX's set of de novo families into an equal number of chunks for searching, reducing the maximum RAM usage. Searching will fail if your machine has insufficient RAM, so you should consider increasing the number of splits. If you have only ~8Gb of RAM, then we recommend settings -S to 32. Setting -S to 0 will let MMseqs2 decide the number of splits automatically. Default: 1 split.""")
     optional.add_argument(
         '--tmp', dest='tmp', default=None,
-        help="""Directory to save intermediate files, including ones created by mmseqs2. Default: a temporary directory that is deleted upon termination""")
+        help="""Directory to save temporary intermediate files, including ones created by MMseqs2. This directory is deleted upon termination, unless '--save-tmp' is specified. Default: a directory with a random name is created (e.g. inside /tmp)""")
+    optional.add_argument(
+        '--save-tmp', dest='save_tmp', action='store_true',
+        help="""Do NOT delete the directory of intermediate files upon termination. Note: these files use a lot of disk storage, so only keep them if needed for debugging.""")
     optional.add_argument(
         '--overwrite', dest='overwrite', action='store_true', default=False,
         help="""Overwrite files""")
