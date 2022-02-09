@@ -40,14 +40,23 @@ def int_loc(query, domain, check=True):
     If check=True, then do some extra processing to validate the input
     """
 
+    if len(domain.index) > 0:
+        min_val = domain.index.min()        
+        max_val = domain.index.max()
+    else:
+        min_val, max_val = 0, 0
+
     if check:
+        assert pd.api.types.is_integer_dtype(query), f"query was dtype {type(query)}, but it needs to be an integer dtype"
+        assert pd.api.types.is_integer_dtype(domain.index), f"domain was dtype {type(domain)}, but it needs to be an integer dtype"
+        assert min_val >= 0, f"Minimum value of domain was {min_val}, but it needs to be >=0"
         assert isinstance(query, np.ndarray)
-        assert (domain.index.max() <= 10**9), \
+        assert (max_val <= 10**9), \
             "The max value in this domain's index is above 1 billion, which will require creating an array with memory >8gb. Make sure you are okay with this and then set check=False"
         assert domain.index.duplicated().sum()==0 # Check that the domain' index does not have duplicate values
-        assert np.all(isin_int(query, domain.index)) # Check that all of query is in the domain
+        assert np.all(isin_int(query, domain.index, max_val=max_val)) # Check that all of query is in the domain
 
-    arr = np.empty(domain.index.max() + 1, domain.dtype)
+    arr = np.empty(max_val + 1, domain.dtype)
     arr[domain.index] = domain.values
     return arr[query]
 
@@ -58,9 +67,12 @@ def isin_int(series, domain, max_val=None):
 
     The implementation trick is to create a boolean presence/absence array.
     """
-    
+
     if max_val is None:
-        max_val = np.max(series)
+        if len(series) > 0:
+            max_val = np.max(series)
+        else:
+            max_val = 0
 
     mask = np.zeros(max_val + 1, np.bool_)
     mask[domain[domain <= max_val]] = True

@@ -1718,7 +1718,8 @@ def mmseqs_merge_search(source_db, target_db_dir, output, ident_list, threads=No
                           sleep_seconds=5,
                           clean_tmp=clean_tmp)
         else:
-            utils.tprint(f"################ SKIPPING Identity {identity} (file doesn't exist probably it had no clusters after merging clusters ######################")
+            raise Exception("Target database {} should exist but doesn't. Something might have gone wrong when you ran `plasx setup...`".format(
+                target_db_pattern.format(identity=identity)))
 
         print(f"Total time to run identity {identity}:", "{:.2f} minutes".format((time.time() - start_time)/60))
 
@@ -1938,8 +1939,6 @@ def annotate_de_novo_families(gene_calls,
 
         # Create mmseqs database from fasta file
         create_mmseqs_db(gene_calls_out, mmseqs_source_db)
-
-#        0 / asdf
 
         # Search sequences against target databases of gene clusters
         mmseqs_merge_search(mmseqs_source_db, target_db_dir, mmseqs_dir, ident_list, threads=threads, splits=splits, clean_tmp=clean_tmp)
